@@ -1,0 +1,12 @@
+*.sdf
+*.opensdf
+*.exe
+*.dll
+*.obj
+*.ilk
+*.lib
+*.pdb
+*.manifest
+Debug/*
+Libraries/*
+*.zip

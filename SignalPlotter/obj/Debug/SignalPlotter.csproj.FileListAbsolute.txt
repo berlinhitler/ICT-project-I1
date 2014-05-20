@@ -1,0 +1,11 @@
+X:\Projects\Witness\SignalPlotter\bin\Debug\SignalPlotter.exe
+X:\Projects\Witness\SignalPlotter\bin\Debug\SignalPlotter.pdb
+X:\Projects\Witness\Debug\SignalPlotter.exe
+X:\Projects\Witness\Debug\SignalPlotter.pdb
+X:\Projects\Witness\SignalPlotter\obj\Debug\SignalPlotter.Console.resources
+X:\Projects\Witness\SignalPlotter\obj\Debug\SignalPlotter.Properties.Resources.resources
+X:\Projects\Witness\SignalPlotter\obj\Debug\SignalPlotter.SignalView.resources
+X:\Projects\Witness\SignalPlotter\obj\Debug\SignalPlotter.csproj.GenerateResource.Cache
+X:\Projects\Witness\SignalPlotter\obj\Debug\SignalPlotter.exe
+X:\Projects\Witness\SignalPlotter\obj\Debug\SignalPlotter.pdb
+X:\Projects\Witness\SignalPlotter\obj\Debug\SignalPlotter.csprojResolveAssemblyReference.cache

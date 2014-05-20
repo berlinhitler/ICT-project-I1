@@ -1,0 +1,8 @@
+X:\Projects\Witness\WirelessStrength\obj\Debug\WirelessStrength.csprojResolveAssemblyReference.cache
+X:\Projects\Witness\WirelessStrength\obj\Debug\WirelessStrength.Properties.Resources.resources
+X:\Projects\Witness\WirelessStrength\obj\Debug\WirelessStrength.csproj.GenerateResource.Cache
+X:\Projects\Witness\WirelessStrength\bin\Debug\WirelessStrength.exe
+X:\Projects\Witness\WirelessStrength\bin\Debug\WirelessStrength.pdb
+X:\Projects\Witness\WirelessStrength\obj\Debug\WirelessStrength.exe
+X:\Projects\Witness\WirelessStrength\obj\Debug\WirelessStrength.pdb
+X:\Projects\Witness\WirelessStrength\obj\Debug\WirelessStrength.Form1.resources
