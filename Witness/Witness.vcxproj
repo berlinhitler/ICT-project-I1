@@ -52,14 +52,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Libraries\glfw-3.0.4\include;..\Libraries\glew-1.10.0\include;..\Libraries\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Libraries\glfw-3.0.4\include;..\Libraries\glew-1.10.0\include;..\Libraries\glm;..\Libraries\ladybug\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\Libraries\glew-1.10.0\lib\Release\Win32\;..\Libraries\glfw-3.0.4\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;glfw3.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Libraries\glew-1.10.0\lib\Release\Win32\;..\Libraries\glfw-3.0.4\lib\Debug;..\Libraries\ladybug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;glfw3.lib;glu32.lib;opengl32.lib;ladybug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -85,7 +85,9 @@
     <ClInclude Include="GPS\GPSEntry.hpp" />
     <ClInclude Include="GPS\GPSLog.hpp" />
     <ClInclude Include="GPS\GPSX.hpp" />
+    <ClInclude Include="Math\EventTimer.hpp" />
     <ClInclude Include="Math\SpaceConverter.hpp" />
+    <ClInclude Include="PGR\StreamPGR.hpp" />
     <ClInclude Include="Rendering\Camera.hpp" />
     <ClInclude Include="Rendering\Input.hpp" />
     <ClInclude Include="Rendering\Primatives.hpp" />
@@ -98,7 +100,9 @@
     <ClCompile Include="Core\Actor.cpp" />
     <ClCompile Include="GPS\GPSLog.cpp" />
     <ClCompile Include="GPS\GPSX.cpp" />
+    <ClCompile Include="Math\EventTimer.cpp" />
     <ClCompile Include="Math\SpaceConverter.cpp" />
+    <ClCompile Include="PGR\StreamPGR.cpp" />
     <ClCompile Include="Rendering\Camera.cpp" />
     <ClCompile Include="Rendering\Input.cpp" />
     <ClCompile Include="Rendering\Primatives.cpp" />

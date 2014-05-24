@@ -15,3 +15,7 @@ void WS_RealSpace(double originLatitude, double originLongitude, double objectLa
 	*X = (objectLatitude - originLatitude)*(3.14159265/180);
 	*Y = (objectLongitude - originLongitude)*(3.14159265/180);
 }
+
+glm::vec3 RS_GetDirection(glm::vec3 vec1, glm::vec3 vec2) {
+	return vec2 - vec1;
+}

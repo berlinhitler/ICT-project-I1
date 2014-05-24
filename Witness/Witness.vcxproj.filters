@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Core">
       <UniqueIdentifier>{6c319b57-46a4-4a80-be3d-c8e055e459cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\PGR">
+      <UniqueIdentifier>{3a2fefb8-88b2-485a-932f-1bb40dbafd45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PGR">
+      <UniqueIdentifier>{4d2b858a-b23d-4473-b7c7-c7dc8e6d9031}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GPS\GPSX.hpp">
@@ -90,6 +96,12 @@
     <ClInclude Include="Core\Actor.hpp">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="PGR\StreamPGR.hpp">
+      <Filter>Header Files\PGR</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\EventTimer.hpp">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="XML\tinyxml2.cpp">
@@ -124,6 +136,12 @@
     </ClCompile>
     <ClCompile Include="Core\Actor.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="PGR\StreamPGR.cpp">
+      <Filter>Source Files\PGR</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\EventTimer.cpp">
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
