@@ -11,4 +11,9 @@
 
 double WS_GetDistanceBetween(double sourceLatitude, double sourceLongitude, double objectLatitude, double objectLongitude);
 void WS_RealSpace(double originLatitude, double originLongitude, double objectLatitude, double objectLongitude, double* X, double* Y);
+
+/*
+ * Vector Math
+ */
 glm::vec3 RS_GetDirection(glm::vec3 vec1, glm::vec3 vec2);
+glm::vec3 RS_Lerp( const glm::vec3& vec1, const glm::vec3& vec2, float t );

@@ -90,6 +90,7 @@
     <ClInclude Include="PGR\StreamPGR.hpp" />
     <ClInclude Include="Rendering\Camera.hpp" />
     <ClInclude Include="Rendering\Input.hpp" />
+    <ClInclude Include="Rendering\PlaybackWindow.hpp" />
     <ClInclude Include="Rendering\Primatives.hpp" />
     <ClInclude Include="Rendering\Scene.hpp" />
     <ClInclude Include="Rendering\Window.hpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="PGR\StreamPGR.cpp" />
     <ClCompile Include="Rendering\Camera.cpp" />
     <ClCompile Include="Rendering\Input.cpp" />
+    <ClCompile Include="Rendering\PlaybackWindow.cpp" />
     <ClCompile Include="Rendering\Primatives.cpp" />
     <ClCompile Include="Rendering\Scene.cpp" />
     <ClCompile Include="Rendering\Window.cpp" />

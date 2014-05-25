@@ -1,5 +1,5 @@
 #include "SpaceConverter.hpp"
-
+#include <glm\geometric.hpp>
 #include <math.h>
 
 double WS_GetDistanceBetween(double sourceLatitude, double sourceLongitude, double objectLatitude, double objectLongitude) {
@@ -18,4 +18,13 @@ void WS_RealSpace(double originLatitude, double originLongitude, double objectLa
 
 glm::vec3 RS_GetDirection(glm::vec3 vec1, glm::vec3 vec2) {
 	return vec2 - vec1;
+}
+
+glm::vec3 RS_Lerp( const glm::vec3& vec1, const glm::vec3& vec2, float t ) {
+	glm::vec3 vec1_t = vec1*t;
+	glm::vec3 vec2_t = vec2*(1.f-t);
+	//return vec1*t + vec2*(1.f-t) ;
+	glm::vec3 return_vec = vec1_t+vec2_t;
+	return_vec.y = 0.0f;
+	return return_vec;
 }

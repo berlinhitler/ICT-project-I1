@@ -89,6 +89,17 @@ void Cube::Scale(glm::vec3 scale) {
 	this->scale = scale;
 }
 
+void Cube::Translate(glm::vec3 translateVector) {
+	position += translateVector;
+	if (position.x >= 1.0f) {
+		position.x = 1.0f;
+	}
+
+	if (position.z >= 110.0f) {
+		position.z = 1.0f;
+	}
+}
+
 Cube::~Cube() {
 }
 

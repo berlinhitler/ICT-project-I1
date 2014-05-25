@@ -23,6 +23,9 @@ public:
 	virtual void SetWorldPosition(glm::vec2 position) = 0;
 
 public:
+	virtual void Translate(glm::vec3 translateVector) = 0;
+
+public:
 	virtual glm::vec3 GetRealPosition() = 0;
 	virtual glm::vec2 GetWorldPosition() = 0;
 

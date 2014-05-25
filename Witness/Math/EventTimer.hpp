@@ -4,6 +4,8 @@
 #include <time.h>
 #include "..\Core\Actor.hpp"
 #include "..\PGR\StreamPGR.hpp"
+#include "SpaceConverter.hpp"
+
 #define NUMBER 10000
 
 int CompareTime(time_t time1,time_t time2);
@@ -21,14 +23,20 @@ public:
 
 public:
 	void Start();
-	void Pause();
 	void Stop();
 	void Update();
 
 private:
+	bool started;
+
 	time_t firstTimeStamp;
 	time_t lastTimeStamp;
+
 	clock_t currentTime;
+	clock_t baseTime;
+	clock_t lastTime;
+
 	std::vector<Actor*> actors;
+	std::map<Actor*, int> actorPhases;
 	StreamPGR* CameraStream;
 };

@@ -14,6 +14,7 @@
 
 #include <vector>
 #include <time.h>
+#include <glm\geometric.hpp>
 
 typedef std::map<time_t, GPSEntry>::iterator it_type;
 
@@ -38,8 +39,11 @@ public:
 // Translation Functions
 public:
 	void			CalculateTimeDifferences();
-	glm::vec3		GetNextPoint();
+	glm::vec3		GetPoint(int phase);
+	int				GetPhase(int timePassed);
+	int				GetPhaseTime(int phase);
 	bool			CheckTimeBounds(clock_t dt, time_t baseTime);
+	void			Move(glm::vec3 direction, double distance, double delta, double movetime);
 
 private:
 	void			UpdatePoints(double OriginLatitude, double OriginLongitude);

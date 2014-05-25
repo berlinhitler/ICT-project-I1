@@ -16,8 +16,17 @@ public:
 	void Destroy();
 
 private:
+	LadybugContext Context;
 	LadybugStreamContext ReadContext;
 	LadybugStreamHeadInfo StreamHeaderInfo;
+
+private:
+	LadybugColorProcessingMethod ColorProcessingMethod;
+	float fFalloffCorrectionValue;
+	bool bFalloffCorrectionFlagOn;
+
+private:
+	bool CheckError(LadybugError Error);
 
 private:
 	bool StreamReady;

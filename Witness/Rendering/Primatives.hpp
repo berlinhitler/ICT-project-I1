@@ -30,6 +30,9 @@ public:
 	glm::vec3 GetRealPosition() { return position; }
 	glm::vec2 GetWorldPosition() { return glm::vec2(); };
 
+public:
+	void Translate(glm::vec3 translateVector);
+
 private:
 	glm::vec3 position;
 	glm::vec3 scale;
@@ -50,6 +53,9 @@ public:
 public:
 	glm::vec3 GetRealPosition() { return position; }
 	glm::vec2 GetWorldPosition() { return glm::vec2(); };
+
+public:
+	void Translate(glm::vec3 translateVector) {}
 
 private:
 	glm::vec3 position;

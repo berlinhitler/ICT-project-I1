@@ -102,6 +102,9 @@
     <ClInclude Include="Math\EventTimer.hpp">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\PlaybackWindow.hpp">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="XML\tinyxml2.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="Math\EventTimer.cpp">
       <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\PlaybackWindow.cpp">
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

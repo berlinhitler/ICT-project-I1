@@ -20,6 +20,7 @@ void Actor::Initalize(const char* GPSData, double OriginLatitude, double OriginL
 
 	renderObject->SetRealPosition(loggedPoints.front());
 	((Cube*)renderObject)->Scale(glm::vec3(0.5f, 0.5f, 0.5f));
+	//renderObject->Translate(glm::vec3(2, 2, 2));
 }
 
 /*
@@ -105,7 +106,7 @@ void Actor::CalculateTimeDifferences() {
 			prevRealTime = iterator->first;
 			baseTimeEstablished = true;
 		} else {
-			time_t timestep = iterator->first - prevRealTime;
+			time_t timestep = iterator->first - baseTime;// - prevRealTime;
 			relativeTime.push_back(timestep);
 			printf("%.f | %.d\n", difftime(iterator->first, prevRealTime), iterator->first);
 			prevRealTime = iterator->first;
@@ -116,16 +117,63 @@ void Actor::CalculateTimeDifferences() {
 
 /*
 ==================
-glm::vec3 Actor::GetNextPoint()
+glm::vec3 Actor::GetPoint(int phase)
 ==================
 */
-glm::vec3 Actor::GetNextPoint() {
-	if (pointIndex == loggedPoints.size()) {
-		pointIndex = 0;
+glm::vec3 Actor::GetPoint(int phase) {
+
+
+	// Used in an incremental system rather than phase
+	//if (pointIndex == loggedPoints.size()) {
+	//	pointIndex = 0;
+	//}
+
+	//glm::vec3 returnVector = loggedPoints[pointIndex];
+	//pointIndex++;
+
+	if (phase-1 == -1) {
+		return loggedPoints[0];
 	}
-	glm::vec3 returnVector = loggedPoints[pointIndex];
-	pointIndex++;
+
+	glm::vec3 returnVector = loggedPoints[phase-1];
+
 	return returnVector;
+}
+
+/*
+==================
+int Actor::GetPhase(int timePassed)
+==================
+*/
+int Actor::GetPhase(int timePassed) {
+
+	for (unsigned int i = 0; i < relativeTime.size(); i++) {
+
+		int relTime = relativeTime[i];
+
+		if (i+1 == relativeTime.size()) {
+			if (relTime = timePassed) {
+				return i+1;
+			}
+		} else if (relTime <= timePassed && relativeTime[i+1] > timePassed) {
+			return i+1;
+		}
+
+	}
+
+	return 0;
+}
+
+/*
+==================
+int	Actor::GetPhaseTime(int phase)
+==================
+*/
+int	Actor::GetPhaseTime(int phase) {
+	if (phase == 0 || phase == relativeTime.size()) {
+		return 0;
+	}
+	return relativeTime[phase] - relativeTime[phase-1];
 }
 
 /*
@@ -134,14 +182,36 @@ bool Actor::CheckTimeBounds(clock_t dt, time_t baseTime)
 ==================
 */
 bool Actor::CheckTimeBounds(clock_t dt, time_t baseTime) {
-	float secondsPastBase = ((float)dt)/CLOCKS_PER_SEC;
+	int secondsPastBase = ((double)dt)/CLOCKS_PER_SEC;
 	if (baseTime <= realTime[0]) {
 		double maxBounds = baseTime + secondsPastBase;
-		if (maxBounds > realTime[0]) {
+		//printf("secondsPastBase: %d | baseTime: %d | realTime[0]: %d | maxBounds %d\n", secondsPastBase, baseTime, realTime[0], maxBounds);
+		if (maxBounds >= realTime[0]) {
 			return true;
 		}
 	}
 	return false;
+}
+
+/*
+==================
+void Actor::Move(glm::vec3 direction, double distance, double delta, double movetime);
+==================
+*/
+void Actor::Move(glm::vec3 direction, double distance, double delta, double movetime) {
+	//glm::vec3 translateVector;
+	//
+	//translateVector.x = (distance.x / (delta * movetime) * WORLD_SCALE);
+	//translateVector.y = (distance.y / (delta * movetime) * WORLD_SCALE);
+	//translateVector.z = 0;//distance.z / (delta * movetime);
+
+	//renderObject->Translate(translateVector);
+
+	//glm::vec3 a = glm::normalize(direction);
+
+	//glm::vec3 translateVector(-(direction.x / (delta * movetime)), 0, -(direction.y / (delta * movetime)));
+
+	renderObject->Translate(direction);
 }
 
 /*

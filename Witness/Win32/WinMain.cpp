@@ -2,13 +2,16 @@
 #include <list>
 
 #include "..\Rendering\Window.hpp"
-#include "..\GPS\GPSX.hpp"
-#include "..\Math\SpaceConverter.hpp"
+#include "..\Rendering\PlaybackWindow.hpp"
 #include "..\Rendering\Scene.hpp"
 #include "..\Rendering\Primatives.hpp"
+
+#include "..\GPS\GPSX.hpp"
+#include "..\Math\SpaceConverter.hpp"
+#include "..\Math\EventTimer.hpp"
 #include "..\Core\Actor.hpp"
 #include "..\PGR\StreamPGR.hpp"
-#include "..\Math\EventTimer.hpp"
+
 
 Window mapWindow;
 Actor testActor;
@@ -16,6 +19,7 @@ Actor testActor2;
 Scene backyardScene;
 GridLines backyardGrid;
 EventTimer eventTimer;
+PlaybackWindow playback;
 
 void PrintDistances(Actor* actorDetails);
 
@@ -23,10 +27,13 @@ int main() {
 
 	// Window to draw everything too
 	mapWindow.Show();
+	playback.Initalize();
 
 	// Initalize our actors
 	testActor.Initalize("8_Apr_2014_12_26_04.gpx", -34.78342726, 138.71205082);
 	testActor2.Initalize("20140515153032.gpx", -34.78342726, 138.71205082);
+
+	// Initalize the scene
 	backyardScene.Insert(testActor.GetRenderable());
 	backyardScene.Insert(testActor2.GetRenderable());
 	backyardScene.Insert(&backyardGrid);
@@ -34,20 +41,31 @@ int main() {
 
 	// Initalize the captured recording
 	StreamPGR cameraStream("ladybug_11501046_20140319_014241-000000.pgr");
+
+	// Our animation controller that reads the logged times and GPS points and performs LERP between points
 	eventTimer.RegisterActor(&testActor);
 	eventTimer.RegisterActor(&testActor2);
 
+	// Keyboard flags
 	bool ToggleFlag = false;
 	bool ToggleLeft = false;
 	bool ToggleRight = false;
 
+	// Debugging
 	PrintDistances(&testActor);
 	PrintDistances(&testActor2);
 
+	// Determine the time diffrences from each logged GPS point
 	testActor.CalculateTimeDifferences();
+	testActor2.CalculateTimeDifferences();
+
+	// Start the animation
+	eventTimer.Start();
 
 	while (mapWindow.isRunning()) {
 		mapWindow.Update();
+		playback.Update();
+		eventTimer.Update();
 
 		if (mapWindow.inputHandle->MouseX != 0) {
 			if (mapWindow.inputHandle->MouseX < 0) {
