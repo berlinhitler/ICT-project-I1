@@ -14,47 +14,37 @@ StreamPGR::StreamPGR(const char* filename) : StreamReady(false) {
 bool StreamPGR::LoadFile(const char* filename) {
 	LadybugError error;
 
-	error = ladybugCreateContext( &Context );
-	if (CheckError(error)) {
+	if (CheckError(ladybugCreateContext( &Context ))) {
 		return false;
 	}
 
-	error = ladybugCreateStreamContext( &ReadContext );
-	if (CheckError(error)) {
+	if (CheckError(ladybugCreateStreamContext( &ReadContext ))) {
 		return false;
 	}
 
-	error = ladybugInitializeStreamForReading( ReadContext, filename, true );
-	if (CheckError(error)) {
+	if (CheckError(ladybugInitializeStreamForReading( ReadContext, filename, true ))) {
 		return false;
 	}
 
-	error = ladybugGetStreamHeader( ReadContext, &StreamHeaderInfo );
-	if (CheckError(error)) {
+	if (CheckError(ladybugGetStreamHeader( ReadContext, &StreamHeaderInfo ))) {
 		return false;
 	}
 
-    const float frameRateToUse = StreamHeaderInfo.ulLadybugStreamVersion < 7 ? (float)StreamHeaderInfo.ulFrameRate : StreamHeaderInfo.frameRate;
+	PrintHeaderInformation(StreamHeaderInfo);
 
-    printf( "--- Stream Information ---\n");
-    printf( "Stream version : %d\n", StreamHeaderInfo.ulLadybugStreamVersion);
-    printf( "Base S/N: %d\n", StreamHeaderInfo.serialBase);
-    printf( "Head S/N: %d\n", StreamHeaderInfo.serialHead);
-    printf( "Frame rate : %3.2f\n", frameRateToUse);
-    printf( "--------------------------\n");
-
-	error = ladybugSetColorProcessingMethod( Context, ColorProcessingMethod);
-	if (CheckError(error)) {
+	if (CheckError(ladybugSetColorProcessingMethod( Context, ColorProcessingMethod))) {
 		return false;
 	}
 
-    error = ladybugSetFalloffCorrectionAttenuation( Context, fFalloffCorrectionValue );
-	if (CheckError(error)) {
+	if (CheckError(ladybugSetFalloffCorrectionAttenuation( Context, fFalloffCorrectionValue ))) {
 		return false;
 	}
 
-    error = ladybugSetFalloffCorrectionFlag( Context, bFalloffCorrectionFlagOn );
-	if (CheckError(error)) {
+	if (CheckError(ladybugSetFalloffCorrectionFlag( Context, bFalloffCorrectionFlagOn ))) {
+		return false;
+	}
+
+	if (!SaveStream(Context)) {
 		return false;
 	}
 
@@ -70,6 +60,38 @@ bool StreamPGR::CheckError(LadybugError Error) {
 		return true;
 	}
 	return false;
+}
+
+void StreamPGR::PrintHeaderInformation(LadybugStreamHeadInfo HeaderInfo) {
+	const float frameRateToUse = StreamHeaderInfo.ulLadybugStreamVersion < 7 ? (float)StreamHeaderInfo.ulFrameRate : StreamHeaderInfo.frameRate;
+    printf( "--- Stream Information ---\n");
+    printf( "Stream version : %d\n", StreamHeaderInfo.ulLadybugStreamVersion);
+    printf( "Base S/N: %d\n", StreamHeaderInfo.serialBase);
+    printf( "Head S/N: %d\n", StreamHeaderInfo.serialHead);
+    printf( "Frame rate : %3.2f\n", frameRateToUse);
+    printf( "--------------------------\n");
+}
+
+bool StreamPGR::SaveStream(LadybugStreamContext& Context) {
+	LadybugImage image;
+	if (CheckError(ladybugReadImageFromStream(Context, &image))) {
+		return false;
+	}
+	SetTextureBounds(image);
+	return true;
+}
+
+void StreamPGR::SetTextureBounds(LadybugImage& Image) {
+    if ( ColorProcessingMethod == LADYBUG_DOWNSAMPLE4 || ColorProcessingMethod == LADYBUG_MONO)
+    {
+        textureWidth = Image.uiCols / 2;
+        textureHeight = Image.uiRows / 2;
+    }
+    else
+    {
+        textureWidth = Image.uiCols;
+        textureHeight = Image.uiRows;
+    }
 }
 
 StreamPGR::~StreamPGR() {
