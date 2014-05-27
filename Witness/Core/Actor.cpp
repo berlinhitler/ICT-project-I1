@@ -21,6 +21,14 @@ void Actor::Initalize(const char* GPSData, double OriginLatitude, double OriginL
 	renderObject->SetRealPosition(loggedPoints.front());
 	((Cube*)renderObject)->Scale(glm::vec3(0.5f, 0.5f, 0.5f));
 	//renderObject->Translate(glm::vec3(2, 2, 2));
+
+	printf("GPS -> Realspace Conversion\n");
+	printf("----------------------\n");
+	for (unsigned int i = 0; i < loggedPoints.size(); i++) {
+		printf("X: %f | Y: %f | Z: %f\n", loggedPoints[i].x, loggedPoints[i].y, loggedPoints[i].z);
+	}
+	printf("----------------------\n\n");
+
 }
 
 /*
@@ -99,6 +107,9 @@ void Actor::CalculateTimeDifferences() {
 	bool baseTimeEstablished = false;
 	time_t baseTime = 0;
 	time_t prevRealTime = 0;
+	printf("----------------------\n");
+	printf("      Time Diff       \n");
+	printf("----------------------\n");
 	for(it_type iterator = gpsData.m_LogData.begin(); iterator != gpsData.m_LogData.end(); iterator++) {
 		if (!baseTimeEstablished) {
 			relativeTime.push_back(0);
@@ -108,11 +119,12 @@ void Actor::CalculateTimeDifferences() {
 		} else {
 			time_t timestep = iterator->first - baseTime;// - prevRealTime;
 			relativeTime.push_back(timestep);
-			printf("%.f | %.d\n", difftime(iterator->first, prevRealTime), iterator->first);
+			printf("Diffrence %.f | Time Stamp %.d\n", difftime(iterator->first, prevRealTime), iterator->first);
 			prevRealTime = iterator->first;
 		}
 		realTime.push_back(iterator->first);
 	}
+	printf("----------------------\n\n");
 }
 
 /*

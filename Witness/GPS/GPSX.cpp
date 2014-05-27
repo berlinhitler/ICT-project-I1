@@ -37,6 +37,8 @@ bool GPSX::Import(const char* filename) {
 		return false;
 	}
 
+	printf("Importing GPS Log: %s\n", filename);
+	printf("----------------------\n");
 	for( tinyxml2::XMLElement* currentRecordingGPXS = firstTrackSegmentGPXS->FirstChildElement( "trkpt" );
 			 currentRecordingGPXS;
 			 currentRecordingGPXS = currentRecordingGPXS->NextSiblingElement() ) {
@@ -78,9 +80,9 @@ bool GPSX::Import(const char* filename) {
 
 		// Log The Position
 		Log(timeStampKey, latitude, longitude);
-		printf("%s : { %f | %f }\n", timeStampText, latitude, longitude);
+		printf("Time: %s { Lat: %f | Lon: %f }\n", timeStampText, latitude, longitude);
 	}
-
+	printf("----------------------\n\n");
 	return true;
 }
 
