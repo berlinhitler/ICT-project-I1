@@ -1,0 +1,35 @@
+﻿Build started 28/05/2014 10:31:42 AM.
+     1>Project "C:\Users\Dev\Documents\GitHub\ICT-project-I1\Witness\Witness.vcxproj" on node 2 (Build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\Witness.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"..\Libraries\glfw-3.0.4\include" /I"..\Libraries\glew-1.10.0\include" /I..\Libraries\glm /I..\Libraries\ladybug\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Core\Actor.cpp GPS\GPSLog.cpp GPS\GPSX.cpp Math\EventTimer.cpp Math\SpaceConverter.cpp PGR\StreamPGR.cpp Rendering\Camera.cpp Rendering\Input.cpp Rendering\PlaybackWindow.cpp Rendering\Primatives.cpp Rendering\Scene.cpp Rendering\Window.cpp Win32\WinMain.cpp XML\tinyxml2.cpp
+         tinyxml2.cpp
+         WinMain.cpp
+     1>c:\users\dev\documents\github\ict-project-i1\witness\rendering\rendarable.hpp(15): fatal error C1083: Cannot open include file: 'glm\vec2.hpp': No such file or directory
+         Window.cpp
+     1>c:\users\dev\documents\github\ict-project-i1\witness\rendering\rendarable.hpp(15): fatal error C1083: Cannot open include file: 'glm\vec2.hpp': No such file or directory
+         Scene.cpp
+     1>c:\users\dev\documents\github\ict-project-i1\witness\rendering\rendarable.hpp(15): fatal error C1083: Cannot open include file: 'glm\vec2.hpp': No such file or directory
+         Primatives.cpp
+     1>c:\users\dev\documents\github\ict-project-i1\witness\rendering\rendarable.hpp(15): fatal error C1083: Cannot open include file: 'glm\vec2.hpp': No such file or directory
+         PlaybackWindow.cpp
+         Input.cpp
+         Camera.cpp
+     1>c:\users\dev\documents\github\ict-project-i1\witness\rendering\camera.hpp(15): fatal error C1083: Cannot open include file: 'glm\vec3.hpp': No such file or directory
+         StreamPGR.cpp
+     1>c:\users\dev\documents\github\ict-project-i1\witness\pgr\streampgr.hpp(4): fatal error C1083: Cannot open include file: 'ladybugstream.h': No such file or directory
+         SpaceConverter.cpp
+     1>c:\users\dev\documents\github\ict-project-i1\witness\math\spaceconverter.hpp(6): fatal error C1083: Cannot open include file: 'glm\vec3.hpp': No such file or directory
+         EventTimer.cpp
+     1>c:\users\dev\documents\github\ict-project-i1\witness\rendering\rendarable.hpp(15): fatal error C1083: Cannot open include file: 'glm\vec2.hpp': No such file or directory
+         GPSX.cpp
+         GPSLog.cpp
+         Actor.cpp
+     1>c:\users\dev\documents\github\ict-project-i1\witness\rendering\rendarable.hpp(15): fatal error C1083: Cannot open include file: 'glm\vec2.hpp': No such file or directory
+         Generating Code...
+     1>Done Building Project "C:\Users\Dev\Documents\GitHub\ICT-project-I1\Witness\Witness.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:20.10

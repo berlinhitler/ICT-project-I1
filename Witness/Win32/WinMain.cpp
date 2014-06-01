@@ -31,7 +31,7 @@ int main() {
 
 	// Initalize our actors
 	testActor.Initalize("8_Apr_2014_12_26_04.gpx", -34.78342726, 138.71205082);
-	testActor2.Initalize("20140515153032.gpx", -34.78342726, 138.71205082);
+	testActor2.Initalize("8_Apr_2014_12_27_55.gpx", -34.78342726, 138.71205082);
 
 	// Initalize the scene
 	backyardScene.Insert(testActor.GetRenderable());
@@ -40,7 +40,7 @@ int main() {
 	mapWindow.currentScene = &backyardScene;
 
 	// Initalize the captured recording
-	StreamPGR cameraStream("ladybug_11501046_20140319_014241-000000.pgr");
+	StreamPGR cameraStream("ladybug_11501046_20140526_140150-000000.pgr");
 
 	// Our animation controller that reads the logged times and GPS points and performs LERP between points
 	eventTimer.RegisterActor(&testActor);

@@ -16,6 +16,14 @@ void WS_RealSpace(double originLatitude, double originLongitude, double objectLa
 	*Y = (objectLongitude - originLongitude)*(3.14159265/180);
 }
 
+double RS_CameraSpace_ThinLense(double focalLength, double z0) {
+	return (focalLength * z0) / (z0 - focalLength);
+}
+
+int CS_GetProjectionPlane(double z0, double zi, int h) {
+	return zi * (h / z0);
+}
+
 glm::vec3 RS_GetDirection(glm::vec3 vec1, glm::vec3 vec2) {
 	return vec2 - vec1;
 }
