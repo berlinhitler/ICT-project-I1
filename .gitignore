@@ -7,6 +7,4 @@
 *.lib
 *.pdb
 *.manifest
-Debug/*
-Libraries/*
 *.zip
