@@ -11,3 +11,4 @@
 *.xcactivitylog
 *.mp4
 *.avi
+Debug/*
