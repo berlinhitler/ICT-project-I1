@@ -20,7 +20,7 @@ using namespace std;
 using namespace cv;
 
 //our sensitivity value to be used in the absdiff() function
-const static int SENSITIVITY_VALUE = 20;
+const static int SENSITIVITY_VALUE = 90;
 //size of blur used to smooth the intensity image output from absdiff() function
 const static int BLUR_SIZE = 10;
 //we'll have just one object to search for
@@ -93,7 +93,7 @@ int main(){
 	//some boolean variables for added functionality
 	bool objectDetected = false;
 	//these two can be toggled by pressing 'd' or 't'
-	bool debugMode = false;
+	bool debugMode = true;
 	bool trackingEnabled = false;
 	//pause and resume code
 	bool pause = false;
@@ -113,7 +113,8 @@ int main(){
         
 		//we can loop the video by re-opening the capture every time the video reaches its last frame
         
-		capture.open("bouncingBall.avi");
+		//capture.open("test.mp4");
+        capture.open(0);
         
 		if(!capture.isOpened()){
 			cout<<"ERROR ACQUIRING VIDEO FEED\n";
@@ -124,7 +125,9 @@ int main(){
 		//check if the video has reach its last frame.
 		//we add '-1' because we are reading two frames from the video at a time.
 		//if this is not included, we get a memory error!
-		while(capture.get(CV_CAP_PROP_POS_FRAMES)<capture.get(CV_CAP_PROP_FRAME_COUNT)-1){
+		while(1
+              //capture.get(CV_CAP_PROP_POS_FRAMES)<capture.get(CV_CAP_PROP_FRAME_COUNT)-2
+              ){
             
 			//read first frame
 			capture.read(frame1);
