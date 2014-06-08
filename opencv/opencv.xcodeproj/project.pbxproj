@@ -26,7 +26,7 @@
 		45596F13193EE69700C40C31 /* libopencv_superres.2.4.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45596F03193EE69700C40C31 /* libopencv_superres.2.4.9.dylib */; };
 		45596F14193EE69700C40C31 /* libopencv_video.2.4.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45596F04193EE69700C40C31 /* libopencv_video.2.4.9.dylib */; };
 		45596F15193EE69700C40C31 /* libopencv_videostab.2.4.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45596F05193EE69700C40C31 /* libopencv_videostab.2.4.9.dylib */; };
-		45BD796119408FD8003FDF02 /* MotionTracking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45BD796019408FD8003FDF02 /* MotionTracking.cpp */; };
+		45973DF019416C2D0051C440 /* Output.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45973DEF19416C2D0051C440 /* Output.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,7 +63,7 @@
 		45596F03193EE69700C40C31 /* libopencv_superres.2.4.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_superres.2.4.9.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.9/lib/libopencv_superres.2.4.9.dylib; sourceTree = "<group>"; };
 		45596F04193EE69700C40C31 /* libopencv_video.2.4.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.2.4.9.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.9/lib/libopencv_video.2.4.9.dylib; sourceTree = "<group>"; };
 		45596F05193EE69700C40C31 /* libopencv_videostab.2.4.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.2.4.9.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.9/lib/libopencv_videostab.2.4.9.dylib; sourceTree = "<group>"; };
-		45BD796019408FD8003FDF02 /* MotionTracking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MotionTracking.cpp; sourceTree = "<group>"; };
+		45973DEF19416C2D0051C440 /* Output.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = Output.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +115,7 @@
 		450330C918D014E6005999E7 /* opencv */ = {
 			isa = PBXGroup;
 			children = (
-				45BD796019408FD8003FDF02 /* MotionTracking.cpp */,
+				45973DEF19416C2D0051C440 /* Output.cpp */,
 				450330CC18D014E6005999E7 /* opencv.1 */,
 			);
 			path = opencv;
@@ -197,7 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45BD796119408FD8003FDF02 /* MotionTracking.cpp in Sources */,
+				45973DF019416C2D0051C440 /* Output.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

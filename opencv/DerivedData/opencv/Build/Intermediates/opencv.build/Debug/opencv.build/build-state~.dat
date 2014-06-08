@@ -2,8 +2,8 @@ Topencv
 v6
 r1
 cCheck dependencies
-cCompileC DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/main.o /Users/Yasir/Documents/ICT/opencv/opencv/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-cLd /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Products/Debug/opencv normal x86_64
+cCompileC DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/MotionTracking.o /Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Products/Debug/opencv normal x86_64
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
 c00000000534A86BA00000000000000AA
@@ -25,23 +25,23 @@ c00000000531EEF840000000000000ADC
 t1394536324
 s2780
 
-N/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/main.o
-t1401859920
-s4856
+N/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/MotionTracking.o
+t1402024553
+s347312
 
-N/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/opencv.LinkFileList
-c00000000538EAF4F0000000000000086
-t1401859919
-s134
+N/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/opencv.LinkFileList
+c0000000053913268000000000000009B
+t1402024552
+s155
 
-N/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Products/Debug/opencv
+N/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Products/Debug/opencv
 t2
 s0
 
-N/Users/Yasir/Documents/ICT/opencv/opencv/main.cpp
-c00000000538EAD850000000000000327
-t1401859461
-s807
+N/Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp
+c0000000053913265000000000000244E
+t1402024549
+s9294
 
 N/usr/local/Cellar/opencv/2.4.9/lib/libopencv_calib3d.2.4.9.dylib
 c0000000053795E35000000000008FC38
@@ -133,69 +133,92 @@ c0000000053795E34000000000002E918
 t1400462900
 s190744
 
-CBuild AST from /Users/Yasir/Documents/ICT/opencv/opencv/main.cpp
+CBuild AST from /Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp
 r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies72f9d7cfe63eb941^ad30ddcfe63eb941^---0#1#1#--18"Check dependencies36"74493AD0-4200-437B-9695-05BB0ABEDFBD-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies705c72e86941b941^c3f079e86941b941^---0#1#1#--18"Check dependencies36"BFB898CA-1E1D-4768-8703-F35E52CC771F-
 
-CCompileC DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/main.o /Users/Yasir/Documents/ICT/opencv/opencv/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s423552719.864775
-e423552720.692519
+CCompileC DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/MotionTracking.o /Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s423717352.477388
+e423717353.505935
 r1
 xCompileC
-xDerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/main.o
-x/Users/Yasir/Documents/ICT/opencv/opencv/main.cpp
+xDerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/MotionTracking.o
+x/Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp
 xnormal
 xx86_64
 xc++
 xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/Yasir/Documents/ICT/opencv/opencv/main.cpp
-d/usr/local/include/opencv2/opencv.hpp
+d/Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp
+d/usr/local/include/opencv/cv.h
 d/usr/local/include/opencv2/core/core_c.h
 d/usr/local/include/opencv2/core/types_c.h
 d/usr/local/include/opencv2/core/core.hpp
 d/usr/local/include/opencv2/core/version.hpp
 d/usr/local/include/opencv2/core/operations.hpp
 d/usr/local/include/opencv2/core/mat.hpp
-d/usr/local/include/opencv2/flann/miniflann.hpp
-d/usr/local/include/opencv2/flann/defines.h
-d/usr/local/include/opencv2/flann/config.h
 d/usr/local/include/opencv2/imgproc/imgproc_c.h
 d/usr/local/include/opencv2/imgproc/types_c.h
 d/usr/local/include/opencv2/imgproc/imgproc.hpp
-d/usr/local/include/opencv2/photo/photo.hpp
-d/usr/local/include/opencv2/photo/photo_c.h
-d/usr/local/include/opencv2/video/video.hpp
 d/usr/local/include/opencv2/video/tracking.hpp
-d/usr/local/include/opencv2/video/background_segm.hpp
 d/usr/local/include/opencv2/features2d/features2d.hpp
-d/usr/local/include/opencv2/objdetect/objdetect.hpp
+d/usr/local/include/opencv2/flann/miniflann.hpp
+d/usr/local/include/opencv2/flann/defines.h
+d/usr/local/include/opencv2/flann/config.h
+d/usr/local/include/opencv2/flann/flann.hpp
+d/usr/local/include/opencv2/flann/flann_base.hpp
+d/usr/local/include/opencv2/flann/general.h
+d/usr/local/include/opencv2/flann/matrix.h
+d/usr/local/include/opencv2/flann/params.h
+d/usr/local/include/opencv2/flann/any.h
+d/usr/local/include/opencv2/flann/saving.h
+d/usr/local/include/opencv2/flann/nn_index.h
+d/usr/local/include/opencv2/flann/result_set.h
+d/usr/local/include/opencv2/flann/all_indices.h
+d/usr/local/include/opencv2/flann/kdtree_index.h
+d/usr/local/include/opencv2/flann/dynamic_bitset.h
+d/usr/local/include/opencv2/flann/dist.h
+d/usr/local/include/opencv2/flann/heap.h
+d/usr/local/include/opencv2/flann/allocator.h
+d/usr/local/include/opencv2/flann/random.h
+d/usr/local/include/opencv2/flann/kdtree_single_index.h
+d/usr/local/include/opencv2/flann/kmeans_index.h
+d/usr/local/include/opencv2/flann/logger.h
+d/usr/local/include/opencv2/flann/composite_index.h
+d/usr/local/include/opencv2/flann/linear_index.h
+d/usr/local/include/opencv2/flann/hierarchical_clustering_index.h
+d/usr/local/include/opencv2/flann/lsh_index.h
+d/usr/local/include/opencv2/flann/lsh_table.h
+d/usr/local/include/opencv2/flann/autotuned_index.h
+d/usr/local/include/opencv2/flann/ground_truth.h
+d/usr/local/include/opencv2/flann/index_testing.h
+d/usr/local/include/opencv2/flann/timer.h
+d/usr/local/include/opencv2/flann/sampling.h
 d/usr/local/include/opencv2/calib3d/calib3d.hpp
-d/usr/local/include/opencv2/ml/ml.hpp
-d/usr/local/include/opencv2/highgui/highgui_c.h
-d/usr/local/include/opencv2/highgui/highgui.hpp
-d/usr/local/include/opencv2/contrib/contrib.hpp
-d/usr/local/include/opencv2/contrib/retina.hpp
-d/usr/local/include/opencv2/contrib/openfabmap.hpp
-d/usr/local/include/opencv/cvaux.h
-d/usr/local/include/opencv2/legacy/legacy.hpp
+d/usr/local/include/opencv2/objdetect/objdetect.hpp
 d/usr/local/include/opencv2/legacy/compat.hpp
-d/usr/local/include/opencv2/legacy/blobtrack.hpp
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection57"Compile /Users/Yasir/Documents/ICT/opencv/opencv/main.cpp186"CompileC DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/main.o opencv/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler5b7dddcfe63eb941^a14ab1d0e63eb941^---0#0#1#-19%DVTDocumentLocation2@56"file:///Users/Yasir/Documents/ICT/opencv/opencv/main.cpp0000000000000000^2974"CompileC DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/main.o opencv/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Yasir/Documents/ICT/opencv    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu++11 -stdlib=libc++ -fmodules -fmodules-cache-path=/Users/Yasir/Documents/ICT/opencv/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/opencv-generated-files.hmap -I/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/opencv-own-target-headers.hmap -I/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/opencv-all-target-headers.hmap -iquote /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/opencv-project-headers.hmap -I/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Products/Debug/include -I/usr/local/include -I/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/DerivedSources/x86_64 -I/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/DerivedSources -F/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Products/Debug -MMD -MT dependencies -MF /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/main.dia -c /Users/Yasir/Documents/ICT/opencv/opencv/main.cpp -o /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/main.o36"402ACD08-19E4-493B-B089-83E9388C6F68-
-b976FF2B4-2AA5-4565-AC80-6F52D49BB00D
+d/usr/local/include/opencv2/core/internal.hpp
+d/usr/local/include/opencv2/highgui/highgui.hpp
+d/usr/local/include/opencv2/highgui/highgui_c.h
+o/Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp:94:7: warning: unused variable 'objectDetected' [-Wunused-variable]
+o        bool objectDetected = false;
+o             ^
+o1 warning generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection78"Compile /Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp206"CompileC DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/MotionTracking.o opencv/MotionTracking.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler1c607ae86941b941^9d8581e96941b941^-212"/Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp:94:7: warning: unused variable 'objectDetected' [-Wunused-variable]        bool objectDetected = false;             ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@32"Unused variable 'objectDetected'-423717353#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@77"file:///Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp0000000000000000^93#6#93#6#4284#0#19"Unused Entity Issue--0#0#1#-19%DVTDocumentLocation4@77"file:///Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp0000000000000000^3188"CompileC DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/MotionTracking.o opencv/MotionTracking.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Yasir/Documents/ICT-project-I1/opencv    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu++11 -stdlib=libc++ -fmodules -fmodules-cache-path=/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/opencv-generated-files.hmap -I/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/opencv-own-target-headers.hmap -I/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/opencv-all-target-headers.hmap -iquote /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/opencv-project-headers.hmap -I/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Products/Debug/include -I/usr/local/include -I/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/DerivedSources/x86_64 -I/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/DerivedSources -F/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Products/Debug -MMD -MT dependencies -MF /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/MotionTracking.d --serialize-diagnostics /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/MotionTracking.dia -c /Users/Yasir/Documents/ICT-project-I1/opencv/opencv/MotionTracking.cpp -o /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/MotionTracking.o36"BF6A3641-3793-4AD6-92AE-40C042FF54E9-
+bA694785A-3372-4569-A06C-C5A129FECCD3
 
-CLd /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Products/Debug/opencv normal x86_64
-s423552720.693342
-e423552720.715872
+CLd /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Products/Debug/opencv normal x86_64
+s423717353.506765
+e423717353.532307
 r1
 xLd
-x/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Products/Debug/opencv
+x/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Products/Debug/opencv
 xnormal
 xx86_64
-d/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/opencv.LinkFileList
-d/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/main.o
+d/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/opencv.LinkFileList
+d/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/MotionTracking.o
 d/usr/local/Cellar/opencv/2.4.9/lib/libopencv_nonfree.2.4.9.dylib
 d/usr/local/Cellar/opencv/2.4.9/lib/libopencv_features2d.2.4.9.dylib
 d/usr/local/Cellar/opencv/2.4.9/lib/libopencv_video.2.4.9.dylib
@@ -247,6 +270,6 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunc.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunwind.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libxpc.dylib
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection85"Link /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Products/Debug/opencv63"Ld DerivedData/opencv/Build/Products/Debug/opencv normal x86_642a8cb1d0e63eb941^c843b7d0e63eb941^---0#0#1#--1467"Ld DerivedData/opencv/Build/Products/Debug/opencv normal x86_64    cd /Users/Yasir/Documents/ICT/opencv    export MACOSX_DEPLOYMENT_TARGET=10.9    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Products/Debug -L/usr/local/Cellar/opencv/2.4.8.2/lib -L/usr/local/Cellar/opencv/2.4.9/lib -F/Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Products/Debug -filelist /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/opencv.LinkFileList -mmacosx-version-min=10.9 -stdlib=libc++ -lopencv_nonfree.2.4.9 -lopencv_features2d.2.4.9 -lopencv_video.2.4.9 -lopencv_highgui.2.4.9 -lopencv_superres.2.4.9 -lopencv_objdetect.2.4.9 -lopencv_legacy.2.4.9 -lopencv_imgproc.2.4.9 -lopencv_ocl.2.4.9 -lopencv_flann.2.4.9 -lopencv_gpu.2.4.9 -lopencv_stitching.2.4.9 -lopencv_videostab.2.4.9 -lopencv_calib3d.2.4.9 -lopencv_ml.2.4.9 -lopencv_contrib.2.4.9 -lopencv_core.2.4.9 -lopencv_photo.2.4.9 -Xlinker -dependency_info -Xlinker /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/opencv_dependency_info.dat -o /Users/Yasir/Documents/ICT/opencv/DerivedData/opencv/Build/Products/Debug/opencv36"9B455561-AC9C-4DA6-A716-D82B5B0B86FB-
-b976FF2B4-2AA5-4565-AC80-6F52D49BB00D
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection96"Link /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Products/Debug/opencv63"Ld DerivedData/opencv/Build/Products/Debug/opencv normal x86_64b4c981e96941b941^894588e96941b941^---0#0#1#--1533"Ld DerivedData/opencv/Build/Products/Debug/opencv normal x86_64    cd /Users/Yasir/Documents/ICT-project-I1/opencv    export MACOSX_DEPLOYMENT_TARGET=10.9    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Products/Debug -L/usr/local/Cellar/opencv/2.4.8.2/lib -L/usr/local/Cellar/opencv/2.4.9/lib -F/Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Products/Debug -filelist /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/opencv.LinkFileList -mmacosx-version-min=10.9 -stdlib=libc++ -lopencv_nonfree.2.4.9 -lopencv_features2d.2.4.9 -lopencv_video.2.4.9 -lopencv_highgui.2.4.9 -lopencv_superres.2.4.9 -lopencv_objdetect.2.4.9 -lopencv_legacy.2.4.9 -lopencv_imgproc.2.4.9 -lopencv_ocl.2.4.9 -lopencv_flann.2.4.9 -lopencv_gpu.2.4.9 -lopencv_stitching.2.4.9 -lopencv_videostab.2.4.9 -lopencv_calib3d.2.4.9 -lopencv_ml.2.4.9 -lopencv_contrib.2.4.9 -lopencv_core.2.4.9 -lopencv_photo.2.4.9 -Xlinker -dependency_info -Xlinker /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Intermediates/opencv.build/Debug/opencv.build/Objects-normal/x86_64/opencv_dependency_info.dat -o /Users/Yasir/Documents/ICT-project-I1/opencv/DerivedData/opencv/Build/Products/Debug/opencv36"6978DE3D-8940-46DE-8F57-94AADE856390-
+bA694785A-3372-4569-A06C-C5A129FECCD3
 

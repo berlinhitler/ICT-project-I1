@@ -20,7 +20,7 @@ using namespace std;
 using namespace cv;
 
 //our sensitivity value to be used in the absdiff() function
-const static int SENSITIVITY_VALUE = 90;
+const static int SENSITIVITY_VALUE = 80;
 //size of blur used to smooth the intensity image output from absdiff() function
 const static int BLUR_SIZE = 10;
 //we'll have just one object to search for
@@ -83,7 +83,7 @@ void searchForMovement(Mat thresholdImage, Mat &cameraFeed){
 	line(cameraFeed,Point(x,y),Point(x+25,y),Scalar(0,255,0),2);
     
 	//write the position of the object to the screen
-	putText(cameraFeed,"Tracking object at (" + intToString(x)+","+intToString(y)+")",Point(x,y),1,1,Scalar(255,0,0),2);
+	putText(cameraFeed,"Tracking object at (" + intToString(x)+","+intToString(y)+")",Point(x,y),1,1,Scalar(0,0,255),2);
     
 	
     
@@ -93,8 +93,8 @@ int main(){
 	//some boolean variables for added functionality
 	bool objectDetected = false;
 	//these two can be toggled by pressing 'd' or 't'
-	bool debugMode = true;
-	bool trackingEnabled = false;
+	bool debugMode = false;
+	bool trackingEnabled = true;
 	//pause and resume code
 	bool pause = false;
 	//set up the matrices that we will need
@@ -109,12 +109,12 @@ int main(){
 	//video capture object.
 	VideoCapture capture;
     
-	while(1){
+	for(int control=0; control <= 3; control++){
         
 		//we can loop the video by re-opening the capture every time the video reaches its last frame
         
-		//capture.open("test.mp4");
-        capture.open(0);
+		capture.open("test2.mp4");
+        //capture.open(0);
         
 		if(!capture.isOpened()){
 			cout<<"ERROR ACQUIRING VIDEO FEED\n";
@@ -125,8 +125,8 @@ int main(){
 		//check if the video has reach its last frame.
 		//we add '-1' because we are reading two frames from the video at a time.
 		//if this is not included, we get a memory error!
-		while(1
-              //capture.get(CV_CAP_PROP_POS_FRAMES)<capture.get(CV_CAP_PROP_FRAME_COUNT)-2
+		while(//1
+              capture.get(CV_CAP_PROP_POS_FRAMES)<capture.get(CV_CAP_PROP_FRAME_COUNT)-2
               ){
             
 			//read first frame
