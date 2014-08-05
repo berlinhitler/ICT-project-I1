@@ -1,0 +1,11 @@
+X:\Projects\GroundTruthing\bin\Debug\GroundTruthing.exe.config
+X:\Projects\GroundTruthing\bin\Debug\GroundTruthing.exe
+X:\Projects\GroundTruthing\bin\Debug\GroundTruthing.pdb
+X:\Projects\GroundTruthing\obj\Debug\GroundTruthing.AnnotationScreen.resources
+X:\Projects\GroundTruthing\obj\Debug\GroundTruthing.NewAnnotation.resources
+X:\Projects\GroundTruthing\obj\Debug\GroundTruthing.Properties.Resources.resources
+X:\Projects\GroundTruthing\obj\Debug\GroundTruthing.SplitAnnotationScreen.resources
+X:\Projects\GroundTruthing\obj\Debug\GroundTruthing.csproj.GenerateResource.Cache
+X:\Projects\GroundTruthing\obj\Debug\GroundTruthing.exe
+X:\Projects\GroundTruthing\obj\Debug\GroundTruthing.pdb
+X:\Projects\GroundTruthing\obj\Debug\GroundTruthing.csprojResolveAssemblyReference.cache
