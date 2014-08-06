@@ -59,5 +59,10 @@ namespace GroundTruthing
         {
             annotationController.UpdateSelectedAnnotation(annotationObjectListBox.SelectedItem.ToString());
         }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            annotationController.SaveCurrentCapture();
+        }
     }
 }

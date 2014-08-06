@@ -15,8 +15,8 @@ namespace GroundTruthing
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new AnnotationScreen());
-            Application.Run(new SplitAnnotationScreen());
+            Application.Run(new AnnotationScreen());
+            //Application.Run(new SplitAnnotationScreen());
         }
     }
 }

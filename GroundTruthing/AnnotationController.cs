@@ -311,6 +311,15 @@ namespace GroundTruthing
         }
 
         /**
+         * Draws boxes over an image
+         **/
+        public void SaveCurrentCapture()
+        {
+            SaveData saveData = new SaveData("Temp.xml");
+            saveData.Save(imageFrameAnnotations);
+        }
+
+        /**
          * Validate the state of the controller
          **/
         private bool ControllerValid()

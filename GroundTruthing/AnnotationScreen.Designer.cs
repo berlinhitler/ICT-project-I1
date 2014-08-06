@@ -42,12 +42,15 @@
             this.annotationObjectsLable = new System.Windows.Forms.Label();
             this.addAnnotationButton = new System.Windows.Forms.Button();
             this.annotationObjectListBox = new System.Windows.Forms.ListBox();
+            this.IOGroupBox = new System.Windows.Forms.GroupBox();
+            this.saveButton = new System.Windows.Forms.Button();
             this.mainLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainImageDisplay)).BeginInit();
             this.navigationPanel.SuspendLayout();
             this.mainNavigationControlPanel.SuspendLayout();
             this.mainFrameDisplayPannel.SuspendLayout();
             this.annotationPannel.SuspendLayout();
+            this.IOGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainLayoutPanel
@@ -81,6 +84,7 @@
             // 
             // navigationPanel
             // 
+            this.navigationPanel.Controls.Add(this.IOGroupBox);
             this.navigationPanel.Controls.Add(this.mainNavigationControlPanel);
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigationPanel.Location = new System.Drawing.Point(749, 272);
@@ -192,6 +196,26 @@
             this.annotationObjectListBox.TabIndex = 0;
             this.annotationObjectListBox.SelectedIndexChanged += new System.EventHandler(this.annotationObjectListBox_SelectedIndexChanged);
             // 
+            // IOGroupBox
+            // 
+            this.IOGroupBox.Controls.Add(this.saveButton);
+            this.IOGroupBox.Location = new System.Drawing.Point(258, 3);
+            this.IOGroupBox.Name = "IOGroupBox";
+            this.IOGroupBox.Size = new System.Drawing.Size(277, 84);
+            this.IOGroupBox.TabIndex = 4;
+            this.IOGroupBox.TabStop = false;
+            this.IOGroupBox.Text = "Annotation IO";
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(6, 19);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(105, 23);
+            this.saveButton.TabIndex = 0;
+            this.saveButton.Text = "Save Capture";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
             // AnnotationScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,6 +232,7 @@
             this.mainFrameDisplayPannel.ResumeLayout(false);
             this.annotationPannel.ResumeLayout(false);
             this.annotationPannel.PerformLayout();
+            this.IOGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -227,6 +252,8 @@
         private System.Windows.Forms.ListBox annotationObjectListBox;
         private System.Windows.Forms.Button addAnnotationButton;
         private System.Windows.Forms.Label annotationObjectsLable;
+        private System.Windows.Forms.GroupBox IOGroupBox;
+        private System.Windows.Forms.Button saveButton;
     }
 }
 
