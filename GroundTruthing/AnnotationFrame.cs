@@ -56,14 +56,39 @@ namespace GroundTruthing
             {
                 return false;
             }
+<<<<<<< HEAD
 
+=======
+            // if left is greater than right, switch them
+            if(currentAnnotationBounding.TopLeft_x > currentAnnotationBounding.BottomRight_x)
+            {
+                int temp = currentAnnotationBounding.TopLeft_x;
+                UpdateTop(annotation, currentAnnotationBounding.BottomRight_x, currentAnnotationBounding.TopLeft_y);
+                UpdateBottom(annotation, temp, currentAnnotationBounding.BottomRight_y);
+            }
+            // if top is greater than bottom, switch them
+            if(currentAnnotationBounding.TopLeft_y > currentAnnotationBounding.BottomRight_y)
+            {
+                int temp =  currentAnnotationBounding.TopLeft_y;
+                UpdateTop(annotation, currentAnnotationBounding.TopLeft_x, currentAnnotationBounding.BottomRight_y);
+                UpdateBottom(annotation, currentAnnotationBounding.BottomRight_x, temp);
+            }
+            UpdateFrameInfomrmation(currentAnnotationBounding.TopLeft_x, currentAnnotationBounding.TopLeft_y,
+                currentAnnotationBounding.BottomRight_x, currentAnnotationBounding.BottomRight_y);
+>>>>>>> origin/master
             return true;
         }
 
         /**
+<<<<<<< HEAD
          * Copy the data from this frame to the next if the frame has no annotations
          **/
         public static void CopyToNextFrameIfFree(AnnotationFrame a, AnnotationFrame b)
+=======
+         * Update the information that need to be output.
+         **/
+        public void UpdateFrameInfomrmation(int TopLeft_x, int TopLeft_y, int BottomRight_x, int BottomRight_y)
+>>>>>>> origin/master
         {
             if (a != null)
             {
