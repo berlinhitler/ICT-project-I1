@@ -263,7 +263,7 @@ namespace GroundTruthing
             bool flipBottomX = false;
             bool flipBottomY = false;
 
-            if (targetBounding.BottomRight_x < targetBounding.Topleft_x)
+            if (targetBounding.BottomRight_x < targetBounding.TopLeft_x)
             {
                 flipBottomX = true;
             }
@@ -275,7 +275,7 @@ namespace GroundTruthing
 
             if (flipBottomX && flipBottomY)
             {
-                int width = targetBounding.Topleft_x - targetBounding.BottomRight_x;
+                int width = targetBounding.TopLeft_x - targetBounding.BottomRight_x;
                 int height = targetBounding.TopLeft_y - targetBounding.BottomRight_y;
                 annotationBox = new Rectangle(targetBounding.BottomRight_x, targetBounding.BottomRight_y, width, height);
             }
@@ -284,7 +284,7 @@ namespace GroundTruthing
             {
                 int real_y = targetBounding.TopLeft_y;
                 int real_x = targetBounding.BottomRight_x;
-                int width = targetBounding.Topleft_x - targetBounding.BottomRight_x;
+                int width = targetBounding.TopLeft_x - targetBounding.BottomRight_x;
                 int height = targetBounding.BottomRight_y - targetBounding.TopLeft_y;
                 annotationBox = new Rectangle(real_x, real_y, width, height);
             }
@@ -292,17 +292,17 @@ namespace GroundTruthing
             else if (flipBottomY)
             {
                 int real_y = targetBounding.BottomRight_y;
-                int real_x = targetBounding.Topleft_x;
-                int width = targetBounding.BottomRight_x - targetBounding.Topleft_x;
+                int real_x = targetBounding.TopLeft_x;
+                int width = targetBounding.BottomRight_x - targetBounding.TopLeft_x;
                 int height = targetBounding.TopLeft_y - targetBounding.BottomRight_y;
                 annotationBox = new Rectangle(real_x, real_y, width, height);
             }
 
             else
             {
-                int width = targetBounding.BottomRight_x - targetBounding.Topleft_x;
+                int width = targetBounding.BottomRight_x - targetBounding.TopLeft_x;
                 int height = targetBounding.BottomRight_y - targetBounding.TopLeft_y;
-                annotationBox = new Rectangle(targetBounding.Topleft_x, targetBounding.TopLeft_y, width, height);
+                annotationBox = new Rectangle(targetBounding.TopLeft_x, targetBounding.TopLeft_y, width, height);
             }
 
             Pen drawingPen = new Pen(targetAnnotation.color, 2);
