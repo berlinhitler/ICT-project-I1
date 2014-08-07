@@ -33,6 +33,7 @@
             this.mainImageDisplay = new System.Windows.Forms.PictureBox();
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.IOGroupBox = new System.Windows.Forms.GroupBox();
+            this.loadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.mainNavigationControlPanel = new System.Windows.Forms.GroupBox();
             this.previouseImageButton = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.annotationObjectsLable = new System.Windows.Forms.Label();
             this.addAnnotationButton = new System.Windows.Forms.Button();
             this.annotationObjectListBox = new System.Windows.Forms.ListBox();
-            this.loadButton = new System.Windows.Forms.Button();
             this.mainLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainImageDisplay)).BeginInit();
             this.navigationPanel.SuspendLayout();
@@ -103,6 +103,16 @@
             this.IOGroupBox.TabIndex = 4;
             this.IOGroupBox.TabStop = false;
             this.IOGroupBox.Text = "Annotation IO";
+            // 
+            // loadButton
+            // 
+            this.loadButton.Location = new System.Drawing.Point(117, 19);
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(105, 23);
+            this.loadButton.TabIndex = 1;
+            this.loadButton.Text = "Load Capture";
+            this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
             // 
             // saveButton
             // 
@@ -217,15 +227,6 @@
             this.annotationObjectListBox.Size = new System.Drawing.Size(734, 212);
             this.annotationObjectListBox.TabIndex = 0;
             this.annotationObjectListBox.SelectedIndexChanged += new System.EventHandler(this.annotationObjectListBox_SelectedIndexChanged);
-            // 
-            // loadButton
-            // 
-            this.loadButton.Location = new System.Drawing.Point(117, 19);
-            this.loadButton.Name = "loadButton";
-            this.loadButton.Size = new System.Drawing.Size(105, 23);
-            this.loadButton.TabIndex = 1;
-            this.loadButton.Text = "Load Capture";
-            this.loadButton.UseVisualStyleBackColor = true;
             // 
             // AnnotationScreen
             // 

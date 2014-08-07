@@ -40,18 +40,19 @@ namespace GroundTruthing
                 {
                     xmlWriter.WriteStartElement("object");
                     xmlWriter.WriteAttributeString("id", "" + annotation.id);
+                    xmlWriter.WriteAttributeString("name", "" + annotation.name);
 
                     Bounding currentAnnotationBounding = (Bounding)currentFrame.annotationTable[annotation];
                     xmlWriter.WriteStartElement("box");
 
                     //height
-                    int width = currentAnnotationBounding.BottomRight_x - currentAnnotationBounding.Topleft_x;
+                    int width = currentAnnotationBounding.BottomRight_x - currentAnnotationBounding.TopLeft_x;
                     int height = currentAnnotationBounding.BottomRight_y - currentAnnotationBounding.TopLeft_y;
 
                     xmlWriter.WriteAttributeString("h", "" + height);
                     xmlWriter.WriteAttributeString("w", "" + width);
                     // TODO: calc center 
-                    xmlWriter.WriteAttributeString("xc", "" + (currentAnnotationBounding.Topleft_x + (width / 2)));
+                    xmlWriter.WriteAttributeString("xc", "" + (currentAnnotationBounding.TopLeft_x + (width / 2)));
                     xmlWriter.WriteAttributeString("yc", "" + (currentAnnotationBounding.TopLeft_y + (height / 2)));
                     xmlWriter.WriteEndElement();
 

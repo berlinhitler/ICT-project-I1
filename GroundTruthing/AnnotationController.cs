@@ -159,7 +159,21 @@ namespace GroundTruthing
                 else
                 {
                     imageFrameIndex = 0;
-                    imageFrameAnnotations = new AnnotationFrame[imageStorage.FileCount()];
+
+                    if (imageFrameAnnotations == null)
+                    {
+                        imageFrameAnnotations = new AnnotationFrame[imageStorage.FileCount()];
+                    }
+
+                    else
+                    {
+                        AnnotationFrame[] tempImageStore = new AnnotationFrame[imageStorage.FileCount()];
+                        for (int i = 0; i < imageFrameAnnotations.Length; i++)
+                        {
+                            tempImageStore[i] = imageFrameAnnotations[i];
+                        }
+                        imageFrameAnnotations = tempImageStore;
+                    }
                 }
 
             }
@@ -269,11 +283,11 @@ namespace GroundTruthing
             Graphics graphicsObject = Graphics.FromImage(destinationImage);
             Rectangle annotationBox;
 
-            int width = targetBounding.BottomRight_x - targetBounding.Topleft_x;
+            int width = targetBounding.BottomRight_x - targetBounding.TopLeft_x;
             int height = targetBounding.BottomRight_y - targetBounding.TopLeft_y;
-            annotationBox = new Rectangle(targetBounding.Topleft_x, targetBounding.TopLeft_y, width, height);
+            annotationBox = new Rectangle(targetBounding.TopLeft_x, targetBounding.TopLeft_y, width, height);
 
-            Pen drawingPen = new Pen(targetAnnotation.color, 2);
+            Pen drawingPen = new Pen(targetAnnotation.color, 1);
             graphicsObject.DrawRectangle(drawingPen, annotationBox);
             graphicsObject.Flush();
         }
@@ -288,11 +302,37 @@ namespace GroundTruthing
         }
 
         /**
-         * Loads a previouse capture from disk
+         * Loads a previouse capture from disk and return the refreshed image
          **/
-        public void LoadCapture()
+        public Image LoadCapture(ListBox annotationListBox)
         {
-            
+            LoadData dataLoader = new LoadData();
+            if (dataLoader.OpenFile())
+            {
+                imageFrameAnnotations = dataLoader.GetFrames();
+                annotationList = dataLoader.ExtractActors();
+
+                annotationListBox.Items.Clear();
+                annotationListBox.Items.AddRange(annotationList.ToArray());
+
+                foreach (Annotation currentAnnotation in annotationList)
+                {
+                    currentAnnotation.color = RandomColor();
+                }
+
+                // Refresh the screen
+                if (imageStorage == null)
+                {
+                    return ImageStorage.DefaultImage();
+                }
+
+                else
+                {
+                    return GenerateFrame(imageStorage.ReadImage(imageFrameIndex));
+                }
+            }
+
+            return ImageStorage.DefaultImage();
         }
 
         /**

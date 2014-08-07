@@ -15,6 +15,10 @@ namespace GroundTruthing
          **/
         public string selectedFilename = "";
 
+        /**
+         * the list of annotation objects
+         **/
+        private LinkedList<Annotation> loadedAnnotations = new LinkedList<Annotation>();
 
         /**
          * the list of loaded frames
@@ -56,13 +60,26 @@ namespace GroundTruthing
             }
         }
 
-
         /**
          * return all the frames we have read
          **/
         public AnnotationFrame[] GetFrames()
         {
-            return null;
+            AnnotationFrame[] returnArray = new AnnotationFrame[loadedFrames.Count];
+            for (int i = 0; i < loadedFrames.Count; i++)
+            {
+                returnArray[i] = loadedFrames.ElementAt(i);
+            }
+
+            return returnArray;
+        }
+
+        /**
+         * determine all unique actors
+         **/
+        public LinkedList<Annotation> ExtractActors()
+        {
+            return loadedAnnotations;
         }
 
         /**
@@ -83,7 +100,7 @@ namespace GroundTruthing
                             break;
 
                         case "object":
-                            AddObject(Int32.Parse(xmlFileReader["id"]));
+                            AddObject(Int32.Parse(xmlFileReader["id"]), xmlFileReader["name"]);
                             break;
 
                         case "box":
@@ -112,9 +129,10 @@ namespace GroundTruthing
         /**
          * move to the next object
          **/
-        private void AddObject(int objectID)
+        private void AddObject(int objectID, string name)
         {
-            Annotation newAnnotation = new Annotation();
+            Annotation newAnnotation = GenerateAnnotation(name);
+            newAnnotation.id = objectID;
             currentObject = newAnnotation;
         }
 
@@ -125,12 +143,31 @@ namespace GroundTruthing
         {
             Bounding newBounding = new Bounding();
 
-            newBounding.Topleft_x = centerX - (width / 2);
+            newBounding.TopLeft_x = centerX - (width / 2);
             newBounding.TopLeft_y = centerY - (height / 2);
             newBounding.BottomRight_x = centerX + (width / 2);
             newBounding.BottomRight_y = centerY + (height / 2);
 
             currentFrame.annotationTable[currentObject] = newBounding;
+        }
+
+        /**
+         * Generate an annotation if none exist otherwise return the existing one
+         **/
+        private Annotation GenerateAnnotation(string name)
+        {
+            foreach (Annotation currentAnnotation in loadedAnnotations)
+            {
+                if (currentAnnotation.name == name)
+                {
+                    return currentAnnotation;
+                }
+            }
+
+            Annotation returnAnnotation = new Annotation();
+            returnAnnotation.name = name;
+            loadedAnnotations.AddLast(returnAnnotation);
+            return returnAnnotation;
         }
     }
 }

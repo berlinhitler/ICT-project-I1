@@ -28,7 +28,7 @@ namespace GroundTruthing
             }
 
             Bounding currentAnnotationBounding = (Bounding)annotationTable[annotation];
-            currentAnnotationBounding.Topleft_x = x;
+            currentAnnotationBounding.TopLeft_x = x;
             currentAnnotationBounding.TopLeft_y = y;
         }
 
@@ -53,7 +53,7 @@ namespace GroundTruthing
         public bool AnnotationComplete(Annotation annotation)
         {
             Bounding currentAnnotationBounding = (Bounding)annotationTable[annotation];
-            if (currentAnnotationBounding.Topleft_x == -1 ||
+            if (currentAnnotationBounding.TopLeft_x == -1 ||
                 currentAnnotationBounding.TopLeft_y == -1 ||
                 currentAnnotationBounding.BottomRight_x == -1 ||
                 currentAnnotationBounding.BottomRight_y == -1)
@@ -62,9 +62,9 @@ namespace GroundTruthing
             }
 
             // if left is greater than right, switch them
-            if (currentAnnotationBounding.Topleft_x > currentAnnotationBounding.BottomRight_x)
+            if (currentAnnotationBounding.TopLeft_x > currentAnnotationBounding.BottomRight_x)
             {
-                int temp = currentAnnotationBounding.Topleft_x;
+                int temp = currentAnnotationBounding.TopLeft_x;
                 UpdateTop(annotation, currentAnnotationBounding.BottomRight_x, currentAnnotationBounding.TopLeft_y);
                 UpdateBottom(annotation, temp, currentAnnotationBounding.BottomRight_y);
             }
@@ -73,10 +73,10 @@ namespace GroundTruthing
             if (currentAnnotationBounding.TopLeft_y > currentAnnotationBounding.BottomRight_y)
             {
                 int temp = currentAnnotationBounding.TopLeft_y;
-                UpdateTop(annotation, currentAnnotationBounding.Topleft_x, currentAnnotationBounding.BottomRight_y);
+                UpdateTop(annotation, currentAnnotationBounding.TopLeft_x, currentAnnotationBounding.BottomRight_y);
                 UpdateBottom(annotation, currentAnnotationBounding.BottomRight_x, temp);
             }
-            UpdateFrameInfomrmation(currentAnnotationBounding.Topleft_x, currentAnnotationBounding.TopLeft_y,
+            UpdateFrameInfomrmation(currentAnnotationBounding.TopLeft_x, currentAnnotationBounding.TopLeft_y,
                 currentAnnotationBounding.BottomRight_x, currentAnnotationBounding.BottomRight_y);
 
             return true;

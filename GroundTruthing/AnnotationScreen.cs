@@ -64,5 +64,10 @@ namespace GroundTruthing
         {
             annotationController.SaveCurrentCapture();
         }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            mainImageDisplay.Image = annotationController.LoadCapture(annotationObjectListBox);
+        }
     }
 }
