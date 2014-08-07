@@ -73,15 +73,6 @@ namespace GroundTruthing
                 return ImageStorage.DefaultImage();
             }
 
-            if (imageFrameIndex + 1 != imageFrameAnnotations.Length)
-            {
-                if (imageFrameAnnotations[imageFrameIndex + 1] == null)
-                {
-                    imageFrameAnnotations[imageFrameIndex + 1] = new AnnotationFrame();
-                }
-                AnnotationFrame.CopyToNextFrameIfFree(imageFrameAnnotations[imageFrameIndex], imageFrameAnnotations[imageFrameIndex + 1]);
-            }
-
             imageFrameIndex = imageFrameIndex + 1;
 
             if (imageFrameIndex >= imageFrameAnnotations.Length)
@@ -243,32 +234,10 @@ namespace GroundTruthing
 
                 if (imageFrameAnnotations[imageFrameIndex] != null)
                 {
-                    // Perform correction
-                    bool correctionFlag = true;
-                    while (correctionFlag)
-                    {
-                        foreach (DictionaryEntry pair in imageFrameAnnotations[imageFrameIndex].annotationTable)
-                        {
-                            if (imageFrameAnnotations[imageFrameIndex].AnnotationComplete((Annotation)pair.Key))
-                            {
-                                if (CorrectAnnotationOrientation(imageFrameAnnotations[imageFrameIndex], (Annotation)pair.Key))
-                                {
-                                    break;
-                                }
-
-                                else
-                                {
-                                    correctionFlag = false;
-                                }
-                            }
-                        }
-                    }
-
                     foreach (DictionaryEntry pair in imageFrameAnnotations[imageFrameIndex].annotationTable)
                     {
                         if (imageFrameAnnotations[imageFrameIndex].AnnotationComplete((Annotation)pair.Key))
                         {
-                            CorrectAnnotationOrientation(imageFrameAnnotations[imageFrameIndex], (Annotation)pair.Key);
                             DrawAnnotation(ref generatedImage, (Annotation)pair.Key, (Bounding)pair.Value);
                         }
                     }
@@ -284,16 +253,17 @@ namespace GroundTruthing
         }
 
         /**
-         * Corrects top and bottom markers
+         * Draws boxes over an image
          **/
-        public bool CorrectAnnotationOrientation(AnnotationFrame currentFrame, Annotation currentObject)
+        public void DrawAnnotation(ref Image destinationImage, Annotation targetAnnotation, Bounding targetBounding)
         {
+            Graphics graphicsObject = Graphics.FromImage(destinationImage);
+            Rectangle annotationBox;
+
             bool flipBottomX = false;
             bool flipBottomY = false;
 
-            Bounding targetBounding = (Bounding)currentFrame.annotationTable[currentObject];
-
-            if (targetBounding.BottomRight_x < targetBounding.Topleft_x)
+            if (targetBounding.BottomRight_x < targetBounding.TopLeft_x)
             {
                 flipBottomX = true;
             }
@@ -305,57 +275,39 @@ namespace GroundTruthing
 
             if (flipBottomX && flipBottomY)
             {
-                int width = targetBounding.Topleft_x - targetBounding.BottomRight_x;
+                int width = targetBounding.TopLeft_x - targetBounding.BottomRight_x;
                 int height = targetBounding.TopLeft_y - targetBounding.BottomRight_y;
-                currentFrame.annotationTable[currentObject] = CorrectBoundingBox(targetBounding.BottomRight_x, targetBounding.BottomRight_y, targetBounding.Topleft_x, targetBounding.TopLeft_y);
-                return true;
+                annotationBox = new Rectangle(targetBounding.BottomRight_x, targetBounding.BottomRight_y, width, height);
             }
 
             else if (flipBottomX)
             {
                 int real_y = targetBounding.TopLeft_y;
                 int real_x = targetBounding.BottomRight_x;
-                currentFrame.annotationTable[currentObject] = CorrectBoundingBox(real_x, real_y, targetBounding.Topleft_x, targetBounding.BottomRight_y);
-                return true;
+                int width = targetBounding.TopLeft_x - targetBounding.BottomRight_x;
+                int height = targetBounding.BottomRight_y - targetBounding.TopLeft_y;
+                annotationBox = new Rectangle(real_x, real_y, width, height);
             }
 
             else if (flipBottomY)
             {
                 int real_y = targetBounding.BottomRight_y;
-                int real_x = targetBounding.Topleft_x;
-                currentFrame.annotationTable[currentObject] = CorrectBoundingBox(real_x, real_y, targetBounding.BottomRight_x, targetBounding.TopLeft_y);
-                return true;
+                int real_x = targetBounding.TopLeft_x;
+                int width = targetBounding.BottomRight_x - targetBounding.TopLeft_x;
+                int height = targetBounding.TopLeft_y - targetBounding.BottomRight_y;
+                annotationBox = new Rectangle(real_x, real_y, width, height);
             }
 
-            return false;
-        }
-
-        /**
-         * Draws boxes over an image
-         **/
-        public void DrawAnnotation(ref Image destinationImage, Annotation targetAnnotation, Bounding targetBounding)
-        {
-            Graphics graphicsObject = Graphics.FromImage(destinationImage);
-            Rectangle annotationBox;
-
-
-            int width = targetBounding.BottomRight_x - targetBounding.Topleft_x;
-            int height = targetBounding.BottomRight_y - targetBounding.TopLeft_y;
-            annotationBox = new Rectangle(targetBounding.Topleft_x, targetBounding.TopLeft_y, width, height);
+            else
+            {
+                int width = targetBounding.BottomRight_x - targetBounding.TopLeft_x;
+                int height = targetBounding.BottomRight_y - targetBounding.TopLeft_y;
+                annotationBox = new Rectangle(targetBounding.TopLeft_x, targetBounding.TopLeft_y, width, height);
+            }
 
             Pen drawingPen = new Pen(targetAnnotation.color, 2);
             graphicsObject.DrawRectangle(drawingPen, annotationBox);
             graphicsObject.Flush();
-        }
-
-        public Bounding CorrectBoundingBox(int topX, int topY, int botX, int botY)
-        {
-            Bounding corrected = new Bounding();
-            corrected.Topleft_x = topX;
-            corrected.TopLeft_y = topY;
-            corrected.BottomRight_x = botX;
-            corrected.BottomRight_y = botY;
-            return corrected;
         }
 
         /**
@@ -365,14 +317,6 @@ namespace GroundTruthing
         {
             SaveData saveData = new SaveData("Temp.xml");
             saveData.Save(imageFrameAnnotations);
-        }
-
-        /**
-         * Loads a previouse capture from disk
-         **/
-        public void LoadCapture()
-        {
-            
         }
 
         /**

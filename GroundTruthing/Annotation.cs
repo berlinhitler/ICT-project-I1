@@ -9,11 +9,6 @@ namespace GroundTruthing
     public class Annotation
     {
         /**
-         * Annotation count
-         **/
-        public static int annotationCount = 0;
-
-        /**
          * Annotation identifier
          **/
         public int id;
@@ -34,15 +29,6 @@ namespace GroundTruthing
         public override string ToString()
         {
             return name;
-        }
-
-        /**
-         * Constructor
-         **/
-        public Annotation()
-        {
-            id = annotationCount;
-            annotationCount++;
         }
     }
 }
