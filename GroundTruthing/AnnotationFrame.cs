@@ -8,6 +8,10 @@ namespace GroundTruthing
 {
     class AnnotationFrame
     {
+        public int cX;
+        public int cY;
+        public int w;
+        public int h;
         /**
          * Annotation to Bounding map, the frame holds a single bounding box for each object in the frame
          **/
@@ -57,7 +61,36 @@ namespace GroundTruthing
                 return false;
             }
 
+            // if left is greater than right, switch them
+            if (currentAnnotationBounding.Topleft_x > currentAnnotationBounding.BottomRight_x)
+            {
+                int temp = currentAnnotationBounding.Topleft_x;
+                UpdateTop(annotation, currentAnnotationBounding.BottomRight_x, currentAnnotationBounding.TopLeft_y);
+                UpdateBottom(annotation, temp, currentAnnotationBounding.BottomRight_y);
+            }
+
+            // if top is greater than bottom, switch them
+            if (currentAnnotationBounding.TopLeft_y > currentAnnotationBounding.BottomRight_y)
+            {
+                int temp = currentAnnotationBounding.TopLeft_y;
+                UpdateTop(annotation, currentAnnotationBounding.Topleft_x, currentAnnotationBounding.BottomRight_y);
+                UpdateBottom(annotation, currentAnnotationBounding.BottomRight_x, temp);
+            }
+            UpdateFrameInfomrmation(currentAnnotationBounding.Topleft_x, currentAnnotationBounding.TopLeft_y,
+                currentAnnotationBounding.BottomRight_x, currentAnnotationBounding.BottomRight_y);
+
             return true;
+        }
+        /**
+         * Update the information that need to be output.
+         **/
+        public void UpdateFrameInfomrmation(int TopLeft_x, int TopLeft_y, int BottomRight_x, int BottomRight_y)
+        {
+            w = Math.Abs(BottomRight_x - TopLeft_x);
+            h = Math.Abs(BottomRight_y - TopLeft_y);
+            cX = TopLeft_x + (w / 2);
+            cY = TopLeft_y + (h / 2);
+            System.Diagnostics.Debug.WriteLine("cX:" + cX + "cY" + cY + "w" + w + "h" + h);
         }
 
         /**
