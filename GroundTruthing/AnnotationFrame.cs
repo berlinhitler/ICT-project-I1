@@ -60,12 +60,14 @@ namespace GroundTruthing
             {
                 return false;
             }
+            // if left is greater than right, switch them
             if(currentAnnotationBounding.TopLeft_x > currentAnnotationBounding.BottomRight_x)
             {
                 int temp = currentAnnotationBounding.TopLeft_x;
                 UpdateTop(annotation, currentAnnotationBounding.BottomRight_x, currentAnnotationBounding.TopLeft_y);
                 UpdateBottom(annotation, temp, currentAnnotationBounding.BottomRight_y);
             }
+            // if top is greater than bottom, switch them
             if(currentAnnotationBounding.TopLeft_y > currentAnnotationBounding.BottomRight_y)
             {
                 int temp =  currentAnnotationBounding.TopLeft_y;
@@ -77,6 +79,9 @@ namespace GroundTruthing
             return true;
         }
 
+        /**
+         * Update the information that need to be output.
+         **/
         public void UpdateFrameInfomrmation(int TopLeft_x, int TopLeft_y, int BottomRight_x, int BottomRight_y)
         {
             w = Math.Abs(BottomRight_x - TopLeft_x);
