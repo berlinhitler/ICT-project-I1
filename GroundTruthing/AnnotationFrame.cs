@@ -8,10 +8,6 @@ namespace GroundTruthing
 {
     class AnnotationFrame
     {
-        public int cX;
-        public int cY;
-        public int w;
-        public int h;
         /**
          * Annotation to Bounding map, the frame holds a single bounding box for each object in the frame
          **/
@@ -28,7 +24,7 @@ namespace GroundTruthing
             }
 
             Bounding currentAnnotationBounding = (Bounding)annotationTable[annotation];
-            currentAnnotationBounding.TopLeft_x = x;
+            currentAnnotationBounding.Topleft_x = x;
             currentAnnotationBounding.TopLeft_y = y;
         }
 
@@ -53,37 +49,33 @@ namespace GroundTruthing
         public bool AnnotationComplete(Annotation annotation)
         {
             Bounding currentAnnotationBounding = (Bounding)annotationTable[annotation];
-            if (currentAnnotationBounding.TopLeft_x == -1 ||
+            if (currentAnnotationBounding.Topleft_x == -1 ||
                 currentAnnotationBounding.TopLeft_y == -1 ||
                 currentAnnotationBounding.BottomRight_x == -1 ||
                 currentAnnotationBounding.BottomRight_y == -1)
             {
                 return false;
             }
-            if(currentAnnotationBounding.TopLeft_x > currentAnnotationBounding.BottomRight_x)
-            {
-                int temp = currentAnnotationBounding.TopLeft_x;
-                UpdateTop(annotation, currentAnnotationBounding.BottomRight_x, currentAnnotationBounding.TopLeft_y);
-                UpdateBottom(annotation, temp, currentAnnotationBounding.BottomRight_y);
-            }
-            if(currentAnnotationBounding.TopLeft_y > currentAnnotationBounding.BottomRight_y)
-            {
-                int temp =  currentAnnotationBounding.TopLeft_y;
-                UpdateTop(annotation, currentAnnotationBounding.TopLeft_x, currentAnnotationBounding.BottomRight_y);
-                UpdateBottom(annotation, currentAnnotationBounding.BottomRight_x, temp);
-            }
-            UpdateFrameInfomrmation(currentAnnotationBounding.TopLeft_x, currentAnnotationBounding.TopLeft_y,
-                currentAnnotationBounding.BottomRight_x, currentAnnotationBounding.BottomRight_y);
+
             return true;
         }
 
-        public void UpdateFrameInfomrmation(int TopLeft_x, int TopLeft_y, int BottomRight_x, int BottomRight_y)
+        /**
+         * Copy the data from this frame to the next if the frame has no annotations
+         **/
+        public static void CopyToNextFrameIfFree(AnnotationFrame a, AnnotationFrame b)
         {
-            w = Math.Abs(BottomRight_x - TopLeft_x);
-            h = Math.Abs(BottomRight_y - TopLeft_y);
-            cX = TopLeft_x + (w / 2);
-            cY = TopLeft_y + (h / 2);
-            System.Diagnostics.Debug.WriteLine("cX:" + cX + "cY" + cY + "w" + w + "h" + h);
+            if (a != null)
+            {
+                if (b.annotationTable.Count == 0)
+                {
+                    b.annotationTable = new Hashtable();
+                    foreach (Annotation annotation in a.annotationTable.Keys)
+                    {
+                        b.annotationTable[annotation] = new Bounding((Bounding)a.annotationTable[annotation]);
+                    }
+                }
+            }
         }
     }
 }

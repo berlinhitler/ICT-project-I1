@@ -63,6 +63,7 @@
     <Compile Include="LadyBugAnnotationController.cs" />
     <Compile Include="LadybugAPI.cs" />
     <Compile Include="LadybugAPI_GPS.cs" />
+    <Compile Include="LoadData.cs" />
     <Compile Include="NewAnnotation.cs">
       <SubType>Form</SubType>
     </Compile>
