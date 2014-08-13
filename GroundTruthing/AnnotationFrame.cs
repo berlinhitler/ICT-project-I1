@@ -76,21 +76,30 @@ namespace GroundTruthing
                 UpdateTop(annotation, currentAnnotationBounding.TopLeft_x, currentAnnotationBounding.BottomRight_y);
                 UpdateBottom(annotation, currentAnnotationBounding.BottomRight_x, temp);
             }
-            UpdateFrameInfomrmation(currentAnnotationBounding.TopLeft_x, currentAnnotationBounding.TopLeft_y,
+            UpdateFrameInformation(currentAnnotationBounding.TopLeft_x, currentAnnotationBounding.TopLeft_y,
                 currentAnnotationBounding.BottomRight_x, currentAnnotationBounding.BottomRight_y);
 
             return true;
         }
+
         /**
          * Update the information that need to be output.
          **/
-        public void UpdateFrameInfomrmation(int TopLeft_x, int TopLeft_y, int BottomRight_x, int BottomRight_y)
+        public void UpdateFrameInformation(int TopLeft_x, int TopLeft_y, int BottomRight_x, int BottomRight_y)
         {
             w = Math.Abs(BottomRight_x - TopLeft_x);
             h = Math.Abs(BottomRight_y - TopLeft_y);
             cX = TopLeft_x + (w / 2);
             cY = TopLeft_y + (h / 2);
             System.Diagnostics.Debug.WriteLine("cX:" + cX + "cY" + cY + "w" + w + "h" + h);
+        }
+
+        /**
+         * Clear an annotation from the frame
+         **/
+        public void RemoveAnnotationFromFrame(Annotation annotation)
+        {
+            annotationTable.Remove(annotation);
         }
 
         /**

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -41,12 +42,12 @@ namespace GroundTruthing
         {
             if ((Control.ModifierKeys & Keys.Shift) != Keys.None)
             {
-                annotationController.HandleDisplayMessage(e.X, e.Y, true, mainImageDisplay);
+                annotationController.HandleDisplayMessage(e.X, e.Y, true, mainImageDisplay, zoomedPanel);
             }
 
             else
             {
-                annotationController.HandleDisplayMessage(e.X, e.Y, false, mainImageDisplay);
+                annotationController.HandleDisplayMessage(e.X, e.Y, false, mainImageDisplay, zoomedPanel);
             }
         }
 
@@ -68,6 +69,11 @@ namespace GroundTruthing
         private void loadButton_Click(object sender, EventArgs e)
         {
             mainImageDisplay.Image = annotationController.LoadCapture(annotationObjectListBox);
+        }
+
+        private void clearSingleAnnotationButton_Click(object sender, EventArgs e)
+        {
+            annotationController.ClearSelectedAnnotationFromFrame();
         }
     }
 }

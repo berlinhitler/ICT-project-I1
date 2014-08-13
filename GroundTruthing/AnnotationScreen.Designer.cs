@@ -31,7 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnnotationScreen));
             this.mainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.mainImageDisplay = new System.Windows.Forms.PictureBox();
+            this.frameDetailsPanle = new System.Windows.Forms.Panel();
+            this.mainFrameDisplayGroupBox = new System.Windows.Forms.GroupBox();
+            this.frameInformationTreeView = new System.Windows.Forms.TreeView();
+            this.annotationPannel = new System.Windows.Forms.Panel();
+            this.annotationObjectsLable = new System.Windows.Forms.Label();
+            this.addAnnotationButton = new System.Windows.Forms.Button();
+            this.annotationObjectListBox = new System.Windows.Forms.ListBox();
             this.navigationPanel = new System.Windows.Forms.Panel();
+            this.zoomedPanel = new System.Windows.Forms.Panel();
             this.IOGroupBox = new System.Windows.Forms.GroupBox();
             this.loadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -39,19 +47,17 @@
             this.previouseImageButton = new System.Windows.Forms.Button();
             this.setDirectoryButton = new System.Windows.Forms.Button();
             this.nextImageButton = new System.Windows.Forms.Button();
-            this.mainFrameDisplayPannel = new System.Windows.Forms.GroupBox();
-            this.frameInformationTreeView = new System.Windows.Forms.TreeView();
-            this.annotationPannel = new System.Windows.Forms.Panel();
-            this.annotationObjectsLable = new System.Windows.Forms.Label();
-            this.addAnnotationButton = new System.Windows.Forms.Button();
-            this.annotationObjectListBox = new System.Windows.Forms.ListBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.clearSingleAnnotationButton = new System.Windows.Forms.Button();
             this.mainLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainImageDisplay)).BeginInit();
+            this.frameDetailsPanle.SuspendLayout();
+            this.mainFrameDisplayGroupBox.SuspendLayout();
+            this.annotationPannel.SuspendLayout();
             this.navigationPanel.SuspendLayout();
             this.IOGroupBox.SuspendLayout();
             this.mainNavigationControlPanel.SuspendLayout();
-            this.mainFrameDisplayPannel.SuspendLayout();
-            this.annotationPannel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainLayoutPanel
@@ -60,9 +66,9 @@
             this.mainLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.mainLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.mainLayoutPanel.Controls.Add(this.mainImageDisplay, 0, 0);
-            this.mainLayoutPanel.Controls.Add(this.navigationPanel, 1, 1);
-            this.mainLayoutPanel.Controls.Add(this.mainFrameDisplayPannel, 1, 0);
+            this.mainLayoutPanel.Controls.Add(this.frameDetailsPanle, 1, 1);
             this.mainLayoutPanel.Controls.Add(this.annotationPannel, 0, 1);
+            this.mainLayoutPanel.Controls.Add(this.navigationPanel, 1, 0);
             this.mainLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.mainLayoutPanel.Name = "mainLayoutPanel";
@@ -75,6 +81,7 @@
             // mainImageDisplay
             // 
             this.mainImageDisplay.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.mainImageDisplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.mainImageDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainImageDisplay.Location = new System.Drawing.Point(3, 3);
             this.mainImageDisplay.Name = "mainImageDisplay";
@@ -83,106 +90,34 @@
             this.mainImageDisplay.TabStop = false;
             this.mainImageDisplay.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainImageDisplay_MouseClick);
             // 
-            // navigationPanel
+            // frameDetailsPanle
             // 
-            this.navigationPanel.Controls.Add(this.IOGroupBox);
-            this.navigationPanel.Controls.Add(this.mainNavigationControlPanel);
-            this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigationPanel.Location = new System.Drawing.Point(749, 272);
-            this.navigationPanel.Name = "navigationPanel";
-            this.navigationPanel.Size = new System.Drawing.Size(741, 263);
-            this.navigationPanel.TabIndex = 1;
+            this.frameDetailsPanle.Controls.Add(this.mainFrameDisplayGroupBox);
+            this.frameDetailsPanle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.frameDetailsPanle.Location = new System.Drawing.Point(749, 272);
+            this.frameDetailsPanle.Name = "frameDetailsPanle";
+            this.frameDetailsPanle.Size = new System.Drawing.Size(741, 263);
+            this.frameDetailsPanle.TabIndex = 1;
             // 
-            // IOGroupBox
+            // mainFrameDisplayGroupBox
             // 
-            this.IOGroupBox.Controls.Add(this.loadButton);
-            this.IOGroupBox.Controls.Add(this.saveButton);
-            this.IOGroupBox.Location = new System.Drawing.Point(258, 3);
-            this.IOGroupBox.Name = "IOGroupBox";
-            this.IOGroupBox.Size = new System.Drawing.Size(277, 84);
-            this.IOGroupBox.TabIndex = 4;
-            this.IOGroupBox.TabStop = false;
-            this.IOGroupBox.Text = "Annotation IO";
-            // 
-            // loadButton
-            // 
-            this.loadButton.Location = new System.Drawing.Point(117, 19);
-            this.loadButton.Name = "loadButton";
-            this.loadButton.Size = new System.Drawing.Size(105, 23);
-            this.loadButton.TabIndex = 1;
-            this.loadButton.Text = "Load Capture";
-            this.loadButton.UseVisualStyleBackColor = true;
-            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
-            // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(6, 19);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(105, 23);
-            this.saveButton.TabIndex = 0;
-            this.saveButton.Text = "Save Capture";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // mainNavigationControlPanel
-            // 
-            this.mainNavigationControlPanel.Controls.Add(this.previouseImageButton);
-            this.mainNavigationControlPanel.Controls.Add(this.setDirectoryButton);
-            this.mainNavigationControlPanel.Controls.Add(this.nextImageButton);
-            this.mainNavigationControlPanel.Location = new System.Drawing.Point(3, 3);
-            this.mainNavigationControlPanel.Name = "mainNavigationControlPanel";
-            this.mainNavigationControlPanel.Size = new System.Drawing.Size(249, 84);
-            this.mainNavigationControlPanel.TabIndex = 3;
-            this.mainNavigationControlPanel.TabStop = false;
-            this.mainNavigationControlPanel.Text = "Navigation";
-            // 
-            // previouseImageButton
-            // 
-            this.previouseImageButton.Location = new System.Drawing.Point(6, 19);
-            this.previouseImageButton.Name = "previouseImageButton";
-            this.previouseImageButton.Size = new System.Drawing.Size(109, 23);
-            this.previouseImageButton.TabIndex = 0;
-            this.previouseImageButton.Text = "Previouse Image";
-            this.previouseImageButton.UseVisualStyleBackColor = true;
-            this.previouseImageButton.Click += new System.EventHandler(this.previouseImageButton_Click);
-            // 
-            // setDirectoryButton
-            // 
-            this.setDirectoryButton.Location = new System.Drawing.Point(6, 48);
-            this.setDirectoryButton.Name = "setDirectoryButton";
-            this.setDirectoryButton.Size = new System.Drawing.Size(236, 23);
-            this.setDirectoryButton.TabIndex = 2;
-            this.setDirectoryButton.Text = "Set Directory";
-            this.setDirectoryButton.UseVisualStyleBackColor = true;
-            this.setDirectoryButton.Click += new System.EventHandler(this.setDirectoryButton_Click);
-            // 
-            // nextImageButton
-            // 
-            this.nextImageButton.Location = new System.Drawing.Point(133, 19);
-            this.nextImageButton.Name = "nextImageButton";
-            this.nextImageButton.Size = new System.Drawing.Size(109, 23);
-            this.nextImageButton.TabIndex = 1;
-            this.nextImageButton.Text = "Next Image";
-            this.nextImageButton.UseVisualStyleBackColor = true;
-            this.nextImageButton.Click += new System.EventHandler(this.nextImageButton_Click);
-            // 
-            // mainFrameDisplayPannel
-            // 
-            this.mainFrameDisplayPannel.Controls.Add(this.frameInformationTreeView);
-            this.mainFrameDisplayPannel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainFrameDisplayPannel.Location = new System.Drawing.Point(749, 3);
-            this.mainFrameDisplayPannel.Name = "mainFrameDisplayPannel";
-            this.mainFrameDisplayPannel.Size = new System.Drawing.Size(741, 263);
-            this.mainFrameDisplayPannel.TabIndex = 2;
-            this.mainFrameDisplayPannel.TabStop = false;
-            this.mainFrameDisplayPannel.Text = "Frame Details";
+            this.mainFrameDisplayGroupBox.Controls.Add(this.frameInformationTreeView);
+            this.mainFrameDisplayGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainFrameDisplayGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.mainFrameDisplayGroupBox.Name = "mainFrameDisplayGroupBox";
+            this.mainFrameDisplayGroupBox.Size = new System.Drawing.Size(741, 263);
+            this.mainFrameDisplayGroupBox.TabIndex = 5;
+            this.mainFrameDisplayGroupBox.TabStop = false;
+            this.mainFrameDisplayGroupBox.Text = "Frame Details";
             // 
             // frameInformationTreeView
             // 
-            this.frameInformationTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.frameInformationTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.frameInformationTreeView.Location = new System.Drawing.Point(3, 16);
             this.frameInformationTreeView.Name = "frameInformationTreeView";
-            this.frameInformationTreeView.Size = new System.Drawing.Size(735, 244);
+            this.frameInformationTreeView.Size = new System.Drawing.Size(738, 212);
             this.frameInformationTreeView.TabIndex = 0;
             // 
             // annotationPannel
@@ -228,6 +163,120 @@
             this.annotationObjectListBox.TabIndex = 0;
             this.annotationObjectListBox.SelectedIndexChanged += new System.EventHandler(this.annotationObjectListBox_SelectedIndexChanged);
             // 
+            // navigationPanel
+            // 
+            this.navigationPanel.Controls.Add(this.groupBox1);
+            this.navigationPanel.Controls.Add(this.zoomedPanel);
+            this.navigationPanel.Controls.Add(this.IOGroupBox);
+            this.navigationPanel.Controls.Add(this.mainNavigationControlPanel);
+            this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigationPanel.Location = new System.Drawing.Point(749, 3);
+            this.navigationPanel.Name = "navigationPanel";
+            this.navigationPanel.Size = new System.Drawing.Size(741, 263);
+            this.navigationPanel.TabIndex = 4;
+            // 
+            // zoomedPanel
+            // 
+            this.zoomedPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.zoomedPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.zoomedPanel.Location = new System.Drawing.Point(9, 9);
+            this.zoomedPanel.Name = "zoomedPanel";
+            this.zoomedPanel.Size = new System.Drawing.Size(200, 200);
+            this.zoomedPanel.TabIndex = 7;
+            // 
+            // IOGroupBox
+            // 
+            this.IOGroupBox.Controls.Add(this.loadButton);
+            this.IOGroupBox.Controls.Add(this.saveButton);
+            this.IOGroupBox.Location = new System.Drawing.Point(215, 99);
+            this.IOGroupBox.Name = "IOGroupBox";
+            this.IOGroupBox.Size = new System.Drawing.Size(249, 84);
+            this.IOGroupBox.TabIndex = 6;
+            this.IOGroupBox.TabStop = false;
+            this.IOGroupBox.Text = "Annotation IO";
+            // 
+            // loadButton
+            // 
+            this.loadButton.Location = new System.Drawing.Point(133, 19);
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(109, 23);
+            this.loadButton.TabIndex = 1;
+            this.loadButton.Text = "Load Capture";
+            this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(6, 19);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(109, 23);
+            this.saveButton.TabIndex = 0;
+            this.saveButton.Text = "Save Capture";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // mainNavigationControlPanel
+            // 
+            this.mainNavigationControlPanel.Controls.Add(this.previouseImageButton);
+            this.mainNavigationControlPanel.Controls.Add(this.setDirectoryButton);
+            this.mainNavigationControlPanel.Controls.Add(this.nextImageButton);
+            this.mainNavigationControlPanel.Location = new System.Drawing.Point(215, 9);
+            this.mainNavigationControlPanel.Name = "mainNavigationControlPanel";
+            this.mainNavigationControlPanel.Size = new System.Drawing.Size(249, 84);
+            this.mainNavigationControlPanel.TabIndex = 5;
+            this.mainNavigationControlPanel.TabStop = false;
+            this.mainNavigationControlPanel.Text = "Navigation";
+            // 
+            // previouseImageButton
+            // 
+            this.previouseImageButton.Location = new System.Drawing.Point(6, 19);
+            this.previouseImageButton.Name = "previouseImageButton";
+            this.previouseImageButton.Size = new System.Drawing.Size(109, 23);
+            this.previouseImageButton.TabIndex = 0;
+            this.previouseImageButton.Text = "Previouse Image";
+            this.previouseImageButton.UseVisualStyleBackColor = true;
+            this.previouseImageButton.Click += new System.EventHandler(this.previouseImageButton_Click);
+            // 
+            // setDirectoryButton
+            // 
+            this.setDirectoryButton.Location = new System.Drawing.Point(6, 48);
+            this.setDirectoryButton.Name = "setDirectoryButton";
+            this.setDirectoryButton.Size = new System.Drawing.Size(236, 23);
+            this.setDirectoryButton.TabIndex = 2;
+            this.setDirectoryButton.Text = "Set Directory";
+            this.setDirectoryButton.UseVisualStyleBackColor = true;
+            this.setDirectoryButton.Click += new System.EventHandler(this.setDirectoryButton_Click);
+            // 
+            // nextImageButton
+            // 
+            this.nextImageButton.Location = new System.Drawing.Point(133, 19);
+            this.nextImageButton.Name = "nextImageButton";
+            this.nextImageButton.Size = new System.Drawing.Size(109, 23);
+            this.nextImageButton.TabIndex = 1;
+            this.nextImageButton.Text = "Next Image";
+            this.nextImageButton.UseVisualStyleBackColor = true;
+            this.nextImageButton.Click += new System.EventHandler(this.nextImageButton_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.clearSingleAnnotationButton);
+            this.groupBox1.Location = new System.Drawing.Point(215, 189);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(249, 51);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Object Control";
+            // 
+            // clearSingleAnnotationButton
+            // 
+            this.clearSingleAnnotationButton.Location = new System.Drawing.Point(6, 19);
+            this.clearSingleAnnotationButton.Name = "clearSingleAnnotationButton";
+            this.clearSingleAnnotationButton.Size = new System.Drawing.Size(109, 23);
+            this.clearSingleAnnotationButton.TabIndex = 0;
+            this.clearSingleAnnotationButton.Text = "Clear Single";
+            this.clearSingleAnnotationButton.UseVisualStyleBackColor = true;
+            this.clearSingleAnnotationButton.Click += new System.EventHandler(this.clearSingleAnnotationButton_Click);
+            // 
             // AnnotationScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,12 +288,14 @@
             this.Text = "Ground Truthing Toolkit";
             this.mainLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainImageDisplay)).EndInit();
+            this.frameDetailsPanle.ResumeLayout(false);
+            this.mainFrameDisplayGroupBox.ResumeLayout(false);
+            this.annotationPannel.ResumeLayout(false);
+            this.annotationPannel.PerformLayout();
             this.navigationPanel.ResumeLayout(false);
             this.IOGroupBox.ResumeLayout(false);
             this.mainNavigationControlPanel.ResumeLayout(false);
-            this.mainFrameDisplayPannel.ResumeLayout(false);
-            this.annotationPannel.ResumeLayout(false);
-            this.annotationPannel.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -253,20 +304,24 @@
 
         private System.Windows.Forms.TableLayoutPanel mainLayoutPanel;
         private System.Windows.Forms.PictureBox mainImageDisplay;
-        private System.Windows.Forms.Panel navigationPanel;
-        private System.Windows.Forms.Button nextImageButton;
-        private System.Windows.Forms.Button previouseImageButton;
-        private System.Windows.Forms.Button setDirectoryButton;
-        private System.Windows.Forms.GroupBox mainNavigationControlPanel;
-        private System.Windows.Forms.GroupBox mainFrameDisplayPannel;
-        private System.Windows.Forms.TreeView frameInformationTreeView;
+        private System.Windows.Forms.Panel frameDetailsPanle;
         private System.Windows.Forms.Panel annotationPannel;
         private System.Windows.Forms.ListBox annotationObjectListBox;
         private System.Windows.Forms.Button addAnnotationButton;
         private System.Windows.Forms.Label annotationObjectsLable;
+        private System.Windows.Forms.GroupBox mainFrameDisplayGroupBox;
+        private System.Windows.Forms.TreeView frameInformationTreeView;
+        private System.Windows.Forms.Panel navigationPanel;
         private System.Windows.Forms.GroupBox IOGroupBox;
-        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button loadButton;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.GroupBox mainNavigationControlPanel;
+        private System.Windows.Forms.Button previouseImageButton;
+        private System.Windows.Forms.Button setDirectoryButton;
+        private System.Windows.Forms.Button nextImageButton;
+        private System.Windows.Forms.Panel zoomedPanel;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button clearSingleAnnotationButton;
     }
 }
 

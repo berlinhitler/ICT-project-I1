@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 
 namespace GroundTruthing
 {
@@ -73,6 +74,13 @@ namespace GroundTruthing
                 return ImageStorage.DefaultImage();
             }
 
+            if (imageFrameAnnotations != null && imageStorage.FileCount() != imageFrameAnnotations.Length)
+            {
+                AnnotationFrame[] tempImageFrameAnnotations = new AnnotationFrame[imageStorage.FileCount()];
+                imageFrameAnnotations.CopyTo(tempImageFrameAnnotations, 0);
+                imageFrameAnnotations = tempImageFrameAnnotations;
+            }
+
             if (imageFrameIndex + 1 != imageFrameAnnotations.Length)
             {
                 if (imageFrameAnnotations[imageFrameIndex + 1] == null)
@@ -95,7 +103,7 @@ namespace GroundTruthing
         /**
          * Messages passed by mouse events on the main display
          **/
-        public void HandleDisplayMessage(int mouseX, int mouseY, bool shiftClick, PictureBox destinationPictureBox)
+        public void HandleDisplayMessage(int mouseX, int mouseY, bool shiftClick, PictureBox destinationPictureBox, Panel previewPanel)
         {
             // Ensure we are not being sent rubish
             if (mouseX < 0 || mouseY < 0)
@@ -135,6 +143,42 @@ namespace GroundTruthing
 
                 destinationPictureBox.Image = GenerateFrame(imageStorage.ReadImage(imageFrameIndex));
                 destinationPictureBox.Refresh();
+
+                if (selectedAnnotation != null)
+                {
+                    if (imageFrameAnnotations[imageFrameIndex].AnnotationComplete(selectedAnnotation))
+                    {
+                        try
+                        {
+                            var selectedAnnotationBounding =
+                                (Bounding)imageFrameAnnotations[imageFrameIndex].annotationTable[selectedAnnotation];
+
+                            var cropedRectangle = BoundingtoRectangle(selectedAnnotationBounding);
+                            var previewBitmap = new Bitmap(cropedRectangle.Width, cropedRectangle.Height);
+
+                            if (previewPanel.BackgroundImage == null)
+                            {
+                                previewPanel.BackgroundImage = ImageStorage.DefaultImage();
+                            }
+
+                            using (var g = Graphics.FromImage(previewBitmap))
+                            {
+                                g.DrawImage(destinationPictureBox.Image, new Rectangle(0, 0, previewBitmap.Width, previewBitmap.Height),
+                                                 cropedRectangle,
+                                                 GraphicsUnit.Pixel);
+                                g.Flush();
+                                g.Save();
+                            }
+
+                            previewPanel.BackgroundImage = previewBitmap;
+                        }
+                        catch (Exception)
+                        {
+                            previewPanel.BackgroundImage = ImageStorage.DefaultImage();
+                        }
+
+                    }
+                }
             }
         }
 
@@ -336,6 +380,28 @@ namespace GroundTruthing
         }
 
         /**
+         * Performs a transform on the main display
+         **/
+        public void TranslateImageScroll(MouseEventArgs mouseEventArgs, PictureBox destinationPictureBox)
+        {
+            // Get our location to zoom in on and the intensity in which to zoom.
+            int scrollIntensity = mouseEventArgs.Delta * SystemInformation.MouseWheelScrollLines / 120;
+            int mouseX = mouseEventArgs.X;
+            int mouseY = mouseEventArgs.Y;
+        }
+
+        /**
+         * Clears the bounding box for the current object
+         **/
+        public void ClearSelectedAnnotationFromFrame()
+        {
+            if (selectedAnnotation != null)
+            {
+                imageFrameAnnotations[imageFrameIndex].RemoveAnnotationFromFrame(selectedAnnotation);
+            }
+        }
+
+        /**
          * Validate the state of the controller
          **/
         private bool ControllerValid()
@@ -353,6 +419,16 @@ namespace GroundTruthing
             }
 
             return true;
+        }
+
+        /**
+         * Convert bounding box to rect
+         **/
+        private Rectangle BoundingtoRectangle(Bounding sourceBounding)
+        {
+            return new Rectangle(sourceBounding.TopLeft_x, sourceBounding.TopLeft_y,
+                sourceBounding.BottomRight_x - sourceBounding.TopLeft_x,
+                sourceBounding.BottomRight_y - sourceBounding.TopLeft_y);
         }
     }
 }
