@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnnotationScreen));
             this.mainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.mainImageDisplayPanel = new System.Windows.Forms.Panel();
             this.mainImageDisplay = new System.Windows.Forms.PictureBox();
             this.frameDetailsPanle = new System.Windows.Forms.Panel();
             this.mainFrameDisplayGroupBox = new System.Windows.Forms.GroupBox();
@@ -39,25 +40,30 @@
             this.addAnnotationButton = new System.Windows.Forms.Button();
             this.annotationObjectListBox = new System.Windows.Forms.ListBox();
             this.navigationPanel = new System.Windows.Forms.Panel();
+            this.zoomOutButton = new System.Windows.Forms.Button();
+            this.zoomInButton = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.clearSingleAnnotationButton = new System.Windows.Forms.Button();
             this.zoomedPanel = new System.Windows.Forms.Panel();
             this.IOGroupBox = new System.Windows.Forms.GroupBox();
+            this.exportImagesButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.mainNavigationControlPanel = new System.Windows.Forms.GroupBox();
             this.previouseImageButton = new System.Windows.Forms.Button();
             this.setDirectoryButton = new System.Windows.Forms.Button();
             this.nextImageButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.clearSingleAnnotationButton = new System.Windows.Forms.Button();
+            this.autoAnnotateButton = new System.Windows.Forms.Button();
             this.mainLayoutPanel.SuspendLayout();
+            this.mainImageDisplayPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainImageDisplay)).BeginInit();
             this.frameDetailsPanle.SuspendLayout();
             this.mainFrameDisplayGroupBox.SuspendLayout();
             this.annotationPannel.SuspendLayout();
             this.navigationPanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.IOGroupBox.SuspendLayout();
             this.mainNavigationControlPanel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainLayoutPanel
@@ -65,7 +71,7 @@
             this.mainLayoutPanel.ColumnCount = 2;
             this.mainLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.mainLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.mainLayoutPanel.Controls.Add(this.mainImageDisplay, 0, 0);
+            this.mainLayoutPanel.Controls.Add(this.mainImageDisplayPanel, 0, 0);
             this.mainLayoutPanel.Controls.Add(this.frameDetailsPanle, 1, 1);
             this.mainLayoutPanel.Controls.Add(this.annotationPannel, 0, 1);
             this.mainLayoutPanel.Controls.Add(this.navigationPanel, 1, 0);
@@ -78,14 +84,23 @@
             this.mainLayoutPanel.Size = new System.Drawing.Size(1493, 538);
             this.mainLayoutPanel.TabIndex = 0;
             // 
+            // mainImageDisplayPanel
+            // 
+            this.mainImageDisplayPanel.AutoScroll = true;
+            this.mainImageDisplayPanel.Controls.Add(this.mainImageDisplay);
+            this.mainImageDisplayPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainImageDisplayPanel.Location = new System.Drawing.Point(3, 3);
+            this.mainImageDisplayPanel.Name = "mainImageDisplayPanel";
+            this.mainImageDisplayPanel.Size = new System.Drawing.Size(740, 263);
+            this.mainImageDisplayPanel.TabIndex = 11;
+            // 
             // mainImageDisplay
             // 
             this.mainImageDisplay.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.mainImageDisplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mainImageDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainImageDisplay.Location = new System.Drawing.Point(3, 3);
+            this.mainImageDisplay.Location = new System.Drawing.Point(9, 9);
             this.mainImageDisplay.Name = "mainImageDisplay";
-            this.mainImageDisplay.Size = new System.Drawing.Size(740, 263);
+            this.mainImageDisplay.Size = new System.Drawing.Size(100, 100);
+            this.mainImageDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.mainImageDisplay.TabIndex = 0;
             this.mainImageDisplay.TabStop = false;
             this.mainImageDisplay.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainImageDisplay_MouseClick);
@@ -165,6 +180,8 @@
             // 
             // navigationPanel
             // 
+            this.navigationPanel.Controls.Add(this.zoomOutButton);
+            this.navigationPanel.Controls.Add(this.zoomInButton);
             this.navigationPanel.Controls.Add(this.groupBox1);
             this.navigationPanel.Controls.Add(this.zoomedPanel);
             this.navigationPanel.Controls.Add(this.IOGroupBox);
@@ -174,6 +191,46 @@
             this.navigationPanel.Name = "navigationPanel";
             this.navigationPanel.Size = new System.Drawing.Size(741, 263);
             this.navigationPanel.TabIndex = 4;
+            // 
+            // zoomOutButton
+            // 
+            this.zoomOutButton.Location = new System.Drawing.Point(134, 215);
+            this.zoomOutButton.Name = "zoomOutButton";
+            this.zoomOutButton.Size = new System.Drawing.Size(75, 23);
+            this.zoomOutButton.TabIndex = 10;
+            this.zoomOutButton.Text = "-";
+            this.zoomOutButton.UseVisualStyleBackColor = true;
+            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
+            // 
+            // zoomInButton
+            // 
+            this.zoomInButton.Location = new System.Drawing.Point(9, 215);
+            this.zoomInButton.Name = "zoomInButton";
+            this.zoomInButton.Size = new System.Drawing.Size(75, 23);
+            this.zoomInButton.TabIndex = 9;
+            this.zoomInButton.Text = "+";
+            this.zoomInButton.UseVisualStyleBackColor = true;
+            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.clearSingleAnnotationButton);
+            this.groupBox1.Location = new System.Drawing.Point(215, 189);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(249, 51);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Object Control";
+            // 
+            // clearSingleAnnotationButton
+            // 
+            this.clearSingleAnnotationButton.Location = new System.Drawing.Point(6, 19);
+            this.clearSingleAnnotationButton.Name = "clearSingleAnnotationButton";
+            this.clearSingleAnnotationButton.Size = new System.Drawing.Size(109, 23);
+            this.clearSingleAnnotationButton.TabIndex = 0;
+            this.clearSingleAnnotationButton.Text = "Clear Single";
+            this.clearSingleAnnotationButton.UseVisualStyleBackColor = true;
+            this.clearSingleAnnotationButton.Click += new System.EventHandler(this.clearSingleAnnotationButton_Click);
             // 
             // zoomedPanel
             // 
@@ -186,6 +243,8 @@
             // 
             // IOGroupBox
             // 
+            this.IOGroupBox.Controls.Add(this.autoAnnotateButton);
+            this.IOGroupBox.Controls.Add(this.exportImagesButton);
             this.IOGroupBox.Controls.Add(this.loadButton);
             this.IOGroupBox.Controls.Add(this.saveButton);
             this.IOGroupBox.Location = new System.Drawing.Point(215, 99);
@@ -194,6 +253,16 @@
             this.IOGroupBox.TabIndex = 6;
             this.IOGroupBox.TabStop = false;
             this.IOGroupBox.Text = "Annotation IO";
+            // 
+            // exportImagesButton
+            // 
+            this.exportImagesButton.Location = new System.Drawing.Point(133, 48);
+            this.exportImagesButton.Name = "exportImagesButton";
+            this.exportImagesButton.Size = new System.Drawing.Size(109, 23);
+            this.exportImagesButton.TabIndex = 2;
+            this.exportImagesButton.Text = "Export Images";
+            this.exportImagesButton.UseVisualStyleBackColor = true;
+            this.exportImagesButton.Click += new System.EventHandler(this.exportImagesButton_Click);
             // 
             // loadButton
             // 
@@ -257,25 +326,15 @@
             this.nextImageButton.UseVisualStyleBackColor = true;
             this.nextImageButton.Click += new System.EventHandler(this.nextImageButton_Click);
             // 
-            // groupBox1
+            // autoAnnotateButton
             // 
-            this.groupBox1.Controls.Add(this.clearSingleAnnotationButton);
-            this.groupBox1.Location = new System.Drawing.Point(215, 189);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(249, 51);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Object Control";
-            // 
-            // clearSingleAnnotationButton
-            // 
-            this.clearSingleAnnotationButton.Location = new System.Drawing.Point(6, 19);
-            this.clearSingleAnnotationButton.Name = "clearSingleAnnotationButton";
-            this.clearSingleAnnotationButton.Size = new System.Drawing.Size(109, 23);
-            this.clearSingleAnnotationButton.TabIndex = 0;
-            this.clearSingleAnnotationButton.Text = "Clear Single";
-            this.clearSingleAnnotationButton.UseVisualStyleBackColor = true;
-            this.clearSingleAnnotationButton.Click += new System.EventHandler(this.clearSingleAnnotationButton_Click);
+            this.autoAnnotateButton.Location = new System.Drawing.Point(6, 48);
+            this.autoAnnotateButton.Name = "autoAnnotateButton";
+            this.autoAnnotateButton.Size = new System.Drawing.Size(109, 23);
+            this.autoAnnotateButton.TabIndex = 3;
+            this.autoAnnotateButton.Text = "Auto Annotate";
+            this.autoAnnotateButton.UseVisualStyleBackColor = true;
+            this.autoAnnotateButton.Click += new System.EventHandler(this.autoAnnotateButton_Click);
             // 
             // AnnotationScreen
             // 
@@ -287,15 +346,17 @@
             this.Name = "AnnotationScreen";
             this.Text = "Ground Truthing Toolkit";
             this.mainLayoutPanel.ResumeLayout(false);
+            this.mainImageDisplayPanel.ResumeLayout(false);
+            this.mainImageDisplayPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainImageDisplay)).EndInit();
             this.frameDetailsPanle.ResumeLayout(false);
             this.mainFrameDisplayGroupBox.ResumeLayout(false);
             this.annotationPannel.ResumeLayout(false);
             this.annotationPannel.PerformLayout();
             this.navigationPanel.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.IOGroupBox.ResumeLayout(false);
             this.mainNavigationControlPanel.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -322,6 +383,11 @@
         private System.Windows.Forms.Panel zoomedPanel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button clearSingleAnnotationButton;
+        private System.Windows.Forms.Button exportImagesButton;
+        private System.Windows.Forms.Button zoomOutButton;
+        private System.Windows.Forms.Button zoomInButton;
+        private System.Windows.Forms.Panel mainImageDisplayPanel;
+        private System.Windows.Forms.Button autoAnnotateButton;
     }
 }
 

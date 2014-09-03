@@ -36,6 +36,11 @@ namespace GroundTruthing
         private Annotation currentObject = null;
 
         /**
+         * the current frame index
+         **/
+        private int frameIndex = 0;
+
+        /**
          * just do nothing for now
          **/
         public LoadData()
@@ -104,10 +109,18 @@ namespace GroundTruthing
                             break;
 
                         case "box":
-                            AddBox( Int32.Parse(xmlFileReader["h"]),
+                            try
+                            {
+                                AddBox(Int32.Parse(xmlFileReader["h"]),
                                     Int32.Parse(xmlFileReader["w"]),
                                     Int32.Parse(xmlFileReader["xc"]),
-                                    Int32.Parse(xmlFileReader["yc"])    );
+                                    Int32.Parse(xmlFileReader["yc"]));
+                            }
+                            catch
+                            {
+                            }
+
+
                             break;
                     }
                 }
@@ -124,6 +137,7 @@ namespace GroundTruthing
             AnnotationFrame newFrame = new AnnotationFrame();
             currentFrame = newFrame;
             loadedFrames.AddLast(newFrame);
+            frameIndex++;
         }
 
         /**

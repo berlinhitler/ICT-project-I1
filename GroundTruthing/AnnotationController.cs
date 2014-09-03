@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
+using GroundTruthing.Properties;
 
 namespace GroundTruthing
 {
@@ -189,6 +192,11 @@ namespace GroundTruthing
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
 
+            if (Directory.Exists(Resources.AnnotationController_SetWorkingDirectory_Default_Location))
+            {
+                folderBrowser.SelectedPath = Resources.AnnotationController_SetWorkingDirectory_Default_Location;
+            }
+
             if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
                 imageStorage = new ImageStorage(folderBrowser.SelectedPath);
@@ -331,7 +339,8 @@ namespace GroundTruthing
             int height = targetBounding.BottomRight_y - targetBounding.TopLeft_y;
             annotationBox = new Rectangle(targetBounding.TopLeft_x, targetBounding.TopLeft_y, width, height);
 
-            Pen drawingPen = new Pen(targetAnnotation.color, 1);
+            //Pen drawingPen = new Pen(targetAnnotation.color, 1);
+            Pen drawingPen = new Pen(Color.Red, 2);
             graphicsObject.DrawRectangle(drawingPen, annotationBox);
             graphicsObject.Flush();
         }
@@ -399,6 +408,53 @@ namespace GroundTruthing
             {
                 imageFrameAnnotations[imageFrameIndex].RemoveAnnotationFromFrame(selectedAnnotation);
             }
+        }
+
+        /**
+         * Exports the images with the annotation box drawn
+         **/
+        public void ExportImages()
+        {
+            Image currentImage = null;
+            int index = 0;
+            Directory.CreateDirectory("exp");
+            do
+            {
+                // Load the current image and draw boxiee
+                currentImage = imageStorage.ReadImage(index);
+                foreach (DictionaryEntry pair in imageFrameAnnotations[index].annotationTable)
+                {
+                    if (imageFrameAnnotations[index].AnnotationComplete((Annotation)pair.Key))
+                    {
+                        DrawAnnotation(ref currentImage, (Annotation)pair.Key, (Bounding)pair.Value);
+                    }
+                }
+                currentImage.Save(String.Format("exp\\img_{0:D4}.jpg", index));
+                index++;
+            } while (!imageStorage.OutOfBounds(index));
+        }
+
+        /**
+         * Run's the auto annotate plugin over the current image
+         **/
+        public Image AutoAnnotate(Image inputImage)
+        {
+            if (inputImage != null)
+            {
+                var imageStream = new MemoryStream();
+                inputImage.Save(imageStream, System.Drawing.Imaging.ImageFormat.Bmp);
+                var imageBytes = imageStream.ToArray();
+
+                AutomationConnector.ProcessImage(imageBytes, (int)imageStream.Length);
+                return Image.FromStream(new MemoryStream(imageBytes));
+            }
+
+            else
+            {
+                return ImageStorage.DefaultImage();
+            }
+
+            
         }
 
         /**

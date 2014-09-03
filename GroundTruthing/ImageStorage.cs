@@ -91,6 +91,19 @@ namespace GroundTruthing
         }
 
         /**
+         * advised is the current index is out of bounds
+         **/
+        public bool OutOfBounds(int index)
+        {
+            if (index >= identifiedFiles.Length)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /**
          * Just a plain image, default is red
          **/
         public static Image DefaultImage()
