@@ -1,7 +1,6 @@
 *.sdf
 *.opensdf
 *.exe
-*.dll
 *.obj
 *.ilk
 *.lib
