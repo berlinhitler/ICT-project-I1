@@ -7,6 +7,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Emgu.CV;
+using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
+using Emgu.CV.UI;
 
 namespace GroundTruthing
 {
@@ -22,19 +26,25 @@ namespace GroundTruthing
         private void setDirectoryButton_Click(object sender, EventArgs e)
         {
             _annotationController.SetWorkingDirectory();
-            mainImageDisplay.Image = _annotationController.PreviouseImage();
+            Image image = _annotationController.PreviouseImage();
+            Bitmap bitImage = new Bitmap(image);
+            mainImageDisplay.Image = new Image<Bgr, Byte>(bitImage);
             _annotationController.UpdateTreeView(frameInformationTreeView);
         }
 
         private void previouseImageButton_Click(object sender, EventArgs e)
         {
-            mainImageDisplay.Image = _annotationController.PreviouseImage();
+            Image image = _annotationController.PreviouseImage();
+            Bitmap bitImage = new Bitmap(image);
+            mainImageDisplay.Image = new Image<Bgr, Byte>(bitImage);
             _annotationController.UpdateTreeView(frameInformationTreeView);
         }
 
         private void nextImageButton_Click(object sender, EventArgs e)
         {
-            mainImageDisplay.Image = _annotationController.NextImage();
+            Image image = _annotationController.NextImage();
+            Bitmap bitImage = new Bitmap(image);
+            mainImageDisplay.Image = new Image<Bgr, Byte>(bitImage);
             _annotationController.UpdateTreeView(frameInformationTreeView);
         }
 
@@ -61,7 +71,9 @@ namespace GroundTruthing
 
         private void loadButton_Click(object sender, EventArgs e)
         {
-            mainImageDisplay.Image = _annotationController.LoadCapture(annotationObjectListBox);
+            Image image = _annotationController.LoadCapture(annotationObjectListBox);
+            Bitmap bitImage = new Bitmap(image);
+            mainImageDisplay.Image = new Image<Bgr, Byte>(bitImage);
         }
 
         private void clearSingleAnnotationButton_Click(object sender, EventArgs e)
@@ -86,7 +98,9 @@ namespace GroundTruthing
 
         private void autoAnnotateButton_Click(object sender, EventArgs e)
         {
-            mainImageDisplay.Image = _annotationController.AutoAnnotate(mainImageDisplay.Image);
+            Image image = _annotationController.AutoAnnotate(mainImageDisplay.Image.Bitmap);
+            Bitmap bitImage = new Bitmap(image);
+            mainImageDisplay.Image = new Image<Bgr, Byte>(bitImage);
         }
     }
 }

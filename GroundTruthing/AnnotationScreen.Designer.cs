@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnnotationScreen));
             this.mainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.mainImageDisplayPanel = new System.Windows.Forms.Panel();
-            this.mainImageDisplay = new System.Windows.Forms.PictureBox();
+            this.mainImageDisplay = new Emgu.CV.UI.ImageBox();
             this.frameDetailsPanle = new System.Windows.Forms.Panel();
             this.mainFrameDisplayGroupBox = new System.Windows.Forms.GroupBox();
             this.frameInformationTreeView = new System.Windows.Forms.TreeView();
@@ -46,6 +47,7 @@
             this.clearSingleAnnotationButton = new System.Windows.Forms.Button();
             this.zoomedPanel = new System.Windows.Forms.Panel();
             this.IOGroupBox = new System.Windows.Forms.GroupBox();
+            this.autoAnnotateButton = new System.Windows.Forms.Button();
             this.exportImagesButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -53,7 +55,6 @@
             this.previouseImageButton = new System.Windows.Forms.Button();
             this.setDirectoryButton = new System.Windows.Forms.Button();
             this.nextImageButton = new System.Windows.Forms.Button();
-            this.autoAnnotateButton = new System.Windows.Forms.Button();
             this.mainLayoutPanel.SuspendLayout();
             this.mainImageDisplayPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainImageDisplay)).BeginInit();
@@ -96,12 +97,11 @@
             // 
             // mainImageDisplay
             // 
-            this.mainImageDisplay.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.mainImageDisplay.Location = new System.Drawing.Point(9, 9);
+            this.mainImageDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainImageDisplay.Location = new System.Drawing.Point(0, 0);
             this.mainImageDisplay.Name = "mainImageDisplay";
-            this.mainImageDisplay.Size = new System.Drawing.Size(100, 100);
-            this.mainImageDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.mainImageDisplay.TabIndex = 0;
+            this.mainImageDisplay.Size = new System.Drawing.Size(740, 263);
+            this.mainImageDisplay.TabIndex = 2;
             this.mainImageDisplay.TabStop = false;
             this.mainImageDisplay.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainImageDisplay_MouseClick);
             // 
@@ -254,6 +254,16 @@
             this.IOGroupBox.TabStop = false;
             this.IOGroupBox.Text = "Annotation IO";
             // 
+            // autoAnnotateButton
+            // 
+            this.autoAnnotateButton.Location = new System.Drawing.Point(6, 48);
+            this.autoAnnotateButton.Name = "autoAnnotateButton";
+            this.autoAnnotateButton.Size = new System.Drawing.Size(109, 23);
+            this.autoAnnotateButton.TabIndex = 3;
+            this.autoAnnotateButton.Text = "Auto Annotate";
+            this.autoAnnotateButton.UseVisualStyleBackColor = true;
+            this.autoAnnotateButton.Click += new System.EventHandler(this.autoAnnotateButton_Click);
+            // 
             // exportImagesButton
             // 
             this.exportImagesButton.Location = new System.Drawing.Point(133, 48);
@@ -326,16 +336,6 @@
             this.nextImageButton.UseVisualStyleBackColor = true;
             this.nextImageButton.Click += new System.EventHandler(this.nextImageButton_Click);
             // 
-            // autoAnnotateButton
-            // 
-            this.autoAnnotateButton.Location = new System.Drawing.Point(6, 48);
-            this.autoAnnotateButton.Name = "autoAnnotateButton";
-            this.autoAnnotateButton.Size = new System.Drawing.Size(109, 23);
-            this.autoAnnotateButton.TabIndex = 3;
-            this.autoAnnotateButton.Text = "Auto Annotate";
-            this.autoAnnotateButton.UseVisualStyleBackColor = true;
-            this.autoAnnotateButton.Click += new System.EventHandler(this.autoAnnotateButton_Click);
-            // 
             // AnnotationScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,7 +347,6 @@
             this.Text = "Ground Truthing Toolkit";
             this.mainLayoutPanel.ResumeLayout(false);
             this.mainImageDisplayPanel.ResumeLayout(false);
-            this.mainImageDisplayPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainImageDisplay)).EndInit();
             this.frameDetailsPanle.ResumeLayout(false);
             this.mainFrameDisplayGroupBox.ResumeLayout(false);
@@ -364,7 +363,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel mainLayoutPanel;
-        private System.Windows.Forms.PictureBox mainImageDisplay;
         private System.Windows.Forms.Panel frameDetailsPanle;
         private System.Windows.Forms.Panel annotationPannel;
         private System.Windows.Forms.ListBox annotationObjectListBox;
@@ -388,6 +386,7 @@
         private System.Windows.Forms.Button zoomInButton;
         private System.Windows.Forms.Panel mainImageDisplayPanel;
         private System.Windows.Forms.Button autoAnnotateButton;
+        private Emgu.CV.UI.ImageBox mainImageDisplay;
     }
 }
 
