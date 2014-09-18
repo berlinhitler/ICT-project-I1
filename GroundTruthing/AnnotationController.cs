@@ -9,6 +9,10 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using GroundTruthing.Properties;
+using Emgu.CV;
+using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
+using Emgu.CV.UI;
 
 namespace GroundTruthing
 {
@@ -44,7 +48,7 @@ namespace GroundTruthing
          **/
         public AnnotationController()
         {
-            
+
         }
 
         /**
@@ -99,7 +103,6 @@ namespace GroundTruthing
             {
                 imageFrameIndex = imageFrameAnnotations.Length - 1;
             }
-
             return GenerateFrame(imageStorage.ReadImage(imageFrameIndex));
         }
 
@@ -437,16 +440,40 @@ namespace GroundTruthing
         /**
          * Run's the auto annotate plugin over the current image
          **/
-        public Image AutoAnnotate(Image inputImage)
+        public Image AutoAnnotate()
         {
-            if (inputImage != null)
-            {
-                var imageStream = new MemoryStream();
-                inputImage.Save(imageStream, System.Drawing.Imaging.ImageFormat.Bmp);
-                var imageBytes = imageStream.ToArray();
+            Image<Bgr, Byte> Frame; //current Frame from camera
+            Image<Bgr, Byte> Previous_Frame; //Previiousframe aquired
+            Image<Bgr, Byte> Difference; //Difference between the two frames
 
-                AutomationConnector.ProcessImage(imageBytes, (int)imageStream.Length);
-                return Image.FromStream(new MemoryStream(imageBytes));
+            double ContourThresh = 0.003; //stores alpha for thread access
+            int Threshold = 20; //stores threshold for thread access
+            if (imageFrameIndex > 0){
+                Frame = new Image<Bgr, Byte>(new Bitmap(imageStorage.ReadImage(imageFrameIndex)));
+                Previous_Frame = new Image<Bgr, Byte>(new Bitmap(imageStorage.ReadImage(imageFrameIndex-1)));
+                Difference = Previous_Frame.AbsDiff(Frame);
+                Difference = Difference.ThresholdBinary(new Bgr(Threshold, Threshold, Threshold),
+                    new Bgr(255, 255, 255));
+                using (MemStorage storage = new MemStorage())
+                {
+                    for (Contour<Point> contours = Difference.Convert<Gray, Byte>().FindContours(
+                             Emgu.CV.CvEnum.CHAIN_APPROX_METHOD.CV_CHAIN_APPROX_SIMPLE,
+                             Emgu.CV.CvEnum.RETR_TYPE.CV_RETR_LIST,
+                             storage);
+                          contours != null;
+                          contours = contours.HNext)
+                    { 
+                        //Draw the detected contour on the image
+                        Contour<Point> currentContour = contours.ApproxPoly(contours.Perimeter * 0.05, storage);
+                        if (currentContour.Area > ContourThresh)
+                        {
+                            Frame.Draw(currentContour.BoundingRectangle, new Bgr(Color.Red), 2);
+                            
+                        }
+
+                    }
+                }
+                return Frame.ToBitmap();
             }
 
             else
@@ -454,7 +481,7 @@ namespace GroundTruthing
                 return ImageStorage.DefaultImage();
             }
 
-            
+
         }
 
         /**
