@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Markup;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
@@ -50,8 +51,17 @@ namespace GroundTruthing
 
         private void mainImageDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            _annotationController.HandleDisplayMessage(e.X, e.Y, (Control.ModifierKeys & Keys.Shift) != Keys.None,
-                mainImageDisplay, zoomedPanel);
+            var originalX = (int)(e.X / mainImageDisplay.ZoomScale) + mainImageDisplay.HorizontalScrollBar.Value;
+            var originalY = (int)(e.Y / mainImageDisplay.ZoomScale) + mainImageDisplay.VerticalScrollBar.Value;
+
+            _annotationController.HandleDisplayMessage(
+                originalX,
+                originalY,
+                mainImageDisplay.ZoomScale,
+                (Control.ModifierKeys & Keys.Shift) != Keys.None,
+                mainImageDisplay,
+                zoomedPanel
+                );
         }
 
         private void addAnnotationButton_Click(object sender, EventArgs e)
@@ -86,21 +96,18 @@ namespace GroundTruthing
             _annotationController.ExportImages();
         }
 
-        private void zoomInButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void zoomOutButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void autoAnnotateButton_Click(object sender, EventArgs e)
         {
             Image image = _annotationController.AutoAnnotate(mainImageDisplay.Image.Bitmap);
             Bitmap bitImage = new Bitmap(image);
             mainImageDisplay.Image = new Image<Bgr, Byte>(bitImage);
         }
+
+        private void mainImageDisplay_OnZoomScaleChange(object sender, EventArgs e)
+        {
+            // We need to redraw all the annotations
+            _annotationController.Redraw(mainImageDisplay);
+        }
+
     }
 }

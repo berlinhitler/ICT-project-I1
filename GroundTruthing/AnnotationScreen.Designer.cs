@@ -103,6 +103,7 @@
             this.mainImageDisplay.Size = new System.Drawing.Size(740, 263);
             this.mainImageDisplay.TabIndex = 2;
             this.mainImageDisplay.TabStop = false;
+            this.mainImageDisplay.OnZoomScaleChange += new System.EventHandler(this.mainImageDisplay_OnZoomScaleChange);
             this.mainImageDisplay.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainImageDisplay_MouseClick);
             // 
             // frameDetailsPanle
@@ -200,7 +201,6 @@
             this.zoomOutButton.TabIndex = 10;
             this.zoomOutButton.Text = "-";
             this.zoomOutButton.UseVisualStyleBackColor = true;
-            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
             // 
             // zoomInButton
             // 
@@ -210,7 +210,6 @@
             this.zoomInButton.TabIndex = 9;
             this.zoomInButton.Text = "+";
             this.zoomInButton.UseVisualStyleBackColor = true;
-            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
             // 
             // groupBox1
             // 

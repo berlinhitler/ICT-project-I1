@@ -48,7 +48,7 @@ namespace GroundTruthing
          **/
         public AnnotationController()
         {
-
+            
         }
 
         /**
@@ -103,13 +103,14 @@ namespace GroundTruthing
             {
                 imageFrameIndex = imageFrameAnnotations.Length - 1;
             }
+
             return GenerateFrame(imageStorage.ReadImage(imageFrameIndex));
         }
 
         /**
          * Messages passed by mouse events on the main display
          **/
-        public void HandleDisplayMessage(int mouseX, int mouseY, bool shiftClick, PictureBox destinationPictureBox, Panel previewPanel)
+        public void HandleDisplayMessage(int mouseX, int mouseY, double zoomScale, bool shiftClick, PictureBox destinationPictureBox, Panel previewPanel)
         {
             // Ensure we are not being sent rubish
             if (mouseX < 0 || mouseY < 0)
@@ -128,6 +129,9 @@ namespace GroundTruthing
             {
                 return;
             }
+
+            // Get the presented size of the image
+            Size imageSize = GetImageSize(destinationPictureBox.Image, zoomScale);
 
             // Deal with annotation updates
             if (selectedAnnotation != null)
@@ -343,7 +347,7 @@ namespace GroundTruthing
             annotationBox = new Rectangle(targetBounding.TopLeft_x, targetBounding.TopLeft_y, width, height);
 
             //Pen drawingPen = new Pen(targetAnnotation.color, 1);
-            Pen drawingPen = new Pen(Color.Red, 2);
+            Pen drawingPen = new Pen(Color.Red, 1);
             graphicsObject.DrawRectangle(drawingPen, annotationBox);
             graphicsObject.Flush();
         }
@@ -425,6 +429,7 @@ namespace GroundTruthing
             {
                 // Load the current image and draw boxiee
                 currentImage = imageStorage.ReadImage(index);
+
                 foreach (DictionaryEntry pair in imageFrameAnnotations[index].annotationTable)
                 {
                     if (imageFrameAnnotations[index].AnnotationComplete((Annotation)pair.Key))
@@ -440,6 +445,9 @@ namespace GroundTruthing
         /**
          * Run's the auto annotate plugin over the current image
          **/
+        /**
+         * Run's the auto annotate plugin over the current image
+         **/
         public Image AutoAnnotate()
         {
             Image<Bgr, Byte> Frame; //current Frame from camera
@@ -448,9 +456,10 @@ namespace GroundTruthing
 
             double ContourThresh = 0.003; //stores alpha for thread access
             int Threshold = 20; //stores threshold for thread access
-            if (imageFrameIndex > 0){
+            if (imageFrameIndex > 0)
+            {
                 Frame = new Image<Bgr, Byte>(new Bitmap(imageStorage.ReadImage(imageFrameIndex)));
-                Previous_Frame = new Image<Bgr, Byte>(new Bitmap(imageStorage.ReadImage(imageFrameIndex-1)));
+                Previous_Frame = new Image<Bgr, Byte>(new Bitmap(imageStorage.ReadImage(imageFrameIndex - 1)));
                 Difference = Previous_Frame.AbsDiff(Frame);
                 Difference = Difference.ThresholdBinary(new Bgr(Threshold, Threshold, Threshold),
                     new Bgr(255, 255, 255));
@@ -462,13 +471,13 @@ namespace GroundTruthing
                              storage);
                           contours != null;
                           contours = contours.HNext)
-                    { 
+                    {
                         //Draw the detected contour on the image
                         Contour<Point> currentContour = contours.ApproxPoly(contours.Perimeter * 0.05, storage);
                         if (currentContour.Area > ContourThresh)
                         {
                             Frame.Draw(currentContour.BoundingRectangle, new Bgr(Color.Red), 2);
-                            
+
                         }
 
                     }
@@ -505,6 +514,14 @@ namespace GroundTruthing
         }
 
         /**
+         * Redraw the current image
+         **/
+        public void Redraw(PictureBox destinationPictureBox)
+        {
+            destinationPictureBox.Image = GenerateFrame(imageStorage.ReadImage(imageFrameIndex));
+        }
+
+        /**
          * Convert bounding box to rect
          **/
         private Rectangle BoundingtoRectangle(Bounding sourceBounding)
@@ -513,5 +530,30 @@ namespace GroundTruthing
                 sourceBounding.BottomRight_x - sourceBounding.TopLeft_x,
                 sourceBounding.BottomRight_y - sourceBounding.TopLeft_y);
         }
+
+        /// <summary>
+        /// Get the size of the image
+        /// </summary>
+        /// <returns>The size of the image</returns>
+        public Size GetImageSize(Image targetImage, double zoomScale)
+        {
+            if (targetImage == null) return new Size();
+            var imageSize = targetImage.Size;
+            return new Size(
+               (int)Math.Round(imageSize.Width * zoomScale),
+               (int)Math.Round(imageSize.Height * zoomScale));
+        }
+
+        /// <summary>
+        /// Get the size of the view area
+        /// </summary>
+        /// <returns>The size of the view area</returns>
+        public Size GetViewSize(PictureBox destinationPictureBox, HScrollBar hScroll, VScrollBar vScroll)
+        {
+            return new Size(
+               destinationPictureBox.ClientSize.Width - (vScroll.Visible ? vScroll.Width : 0),
+               destinationPictureBox.ClientSize.Height - (hScroll.Visible ? hScroll.Height : 0));
+        }
+    
     }
 }

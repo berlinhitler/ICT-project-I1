@@ -39,3 +39,6 @@ C:\Users\Yasir\Desktop\ICT-project-I1\GroundTruthing\obj\Debug\GroundTruthing.Ne
 C:\Users\Yasir\Desktop\ICT-project-I1\GroundTruthing\obj\Debug\GroundTruthing.Properties.Resources.resources
 C:\Users\Yasir\Desktop\ICT-project-I1\GroundTruthing\obj\Debug\GroundTruthing.SplitAnnotationScreen.resources
 C:\Users\Yasir\Desktop\ICT-project-I1\GroundTruthing\obj\Debug\GroundTruthing.csproj.GenerateResource.Cache
+C:\Users\Nomelx\Documents\GitHub\ICT-project-I1\GroundTruthing\bin\Debug\GroundTruthing.exe.config
+C:\Users\Nomelx\Documents\GitHub\ICT-project-I1\GroundTruthing\obj\Debug\GroundTruthing.exe
+C:\Users\Nomelx\Documents\GitHub\ICT-project-I1\GroundTruthing\obj\Debug\GroundTruthing.pdb
