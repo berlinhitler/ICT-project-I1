@@ -64,6 +64,8 @@ namespace GroundTruthing
                 );
         }
 
+
+
         private void addAnnotationButton_Click(object sender, EventArgs e)
         {
             _annotationController.AddAnnotation(annotationObjectListBox);
@@ -98,9 +100,13 @@ namespace GroundTruthing
 
         private void autoAnnotateButton_Click(object sender, EventArgs e)
         {
-            Image image = _annotationController.AutoAnnotate(mainImageDisplay.Image.Bitmap);
-            Bitmap bitImage = new Bitmap(image);
-            mainImageDisplay.Image = new Image<Bgr, Byte>(bitImage);
+
+            //Image image =
+                _annotationController.AutoAnnotate(mainImageDisplay.ZoomScale,
+                mainImageDisplay,
+                zoomedPanel);
+            //Bitmap bitImage = new Bitmap(image);
+            //mainImageDisplay.Image = new Image<Bgr, Byte>(bitImage);
         }
 
         private void mainImageDisplay_OnZoomScaleChange(object sender, EventArgs e)
