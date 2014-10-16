@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using Emgu.CV.UI;
 
+
 namespace GroundTruthing
 {
     public partial class AnnotationScreen : Form
@@ -22,6 +24,11 @@ namespace GroundTruthing
         public AnnotationScreen()
         {
             InitializeComponent();
+            #if !DEBUG
+            mainImageDisplay.FunctionalMode = ImageBox.FunctionalModeOption.Everything;
+            #else
+            mainImageDisplay.FunctionalMode = ImageBox.FunctionalModeOption.PanAndZoom;
+            #endif
         }
 
         private void setDirectoryButton_Click(object sender, EventArgs e)
